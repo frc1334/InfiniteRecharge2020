@@ -16,6 +16,7 @@ and feedback capabilities.
 package frc.robot.utils;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
@@ -41,7 +42,7 @@ public class CANSparkMaxPIDWrapper {
 
     }
 
-    // This void is called to set the PID Tuning values of the SparkMax's PIDController. This includes kP, kI, kD, kFF, kMinOutput and kMaxOutput
+    // This void is called to set the PID Tuning values of the SparkMax's PIDController. This includes kP, kI, kD and kFF
     public void setPIDValues (double kP, double kI, double kD, double kFF, double kMinOutput, double kMaxOutput) {
 
         // Set the input tune values to the PIDController
@@ -50,9 +51,18 @@ public class CANSparkMaxPIDWrapper {
         PIDController.setD(kD);
         PIDController.setFF(kFF);
 
+    }
+
+    // This void method sets the output range of the PID Controller. It takes in the double variables kMinOutput and kMaxOutput for reference
+    public void setPIDOutputRange (double kMinOutput, double kMaxOutput) {
         // Set the output range of the PID Closed Loop control feedback system
         PIDController.setOutputRange(kMinOutput, kMaxOutput);
+    } 
 
+    // This void method sets a positional setpoint on the PID Controller (PID slot index is assumed to be 0)
+    public void setPIDPosition (double setpoint) {
+        // Call the PID set position mode reference function
+        PIDController.setReference(setpoint, ControlType.kPosition);
     }
 
 }
