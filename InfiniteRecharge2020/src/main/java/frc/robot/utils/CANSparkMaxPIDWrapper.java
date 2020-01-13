@@ -65,4 +65,10 @@ public class CANSparkMaxPIDWrapper {
         PIDController.setReference(setpoint, ControlType.kPosition);
     }
 
+    // This void method sets a velocity setpoint on the PID Controller (PID slot index is assumed to be 0)
+    public void setPIDVelocity (double setpoint) {
+        // Call the PID set velocity mode reference function
+        PIDController.setReference(setpoint, ControlType.kVelocity);
+    }
+
 }
