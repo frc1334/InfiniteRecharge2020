@@ -43,13 +43,13 @@ public class CANSparkMaxPIDWrapper {
         // Specific PID mode configurations
         if (mode == 0) {
             // Mode 0, relative PID position control - Reset encoder values to 0
-            Encoder.setPositionConversionFactor(0);
+            Encoder.setPosition(0);
         }
 
     }
 
     // This void is called to set the PID Tuning values of the SparkMax's PIDController. This includes kP, kI, kD and kFF. It also allows for a conversion factor for positional control.
-    public void setPIDValues (double kP, double kI, double kD, double kFF, double kPositionalConvertionFactor) {
+    public void setPIDValues (double kP, double kI, double kD, double kFF, double kPositionalConversionFactor) {
 
         // Set the input tune values to the PIDController
         PIDController.setP(kP);
@@ -57,9 +57,9 @@ public class CANSparkMaxPIDWrapper {
         PIDController.setD(kD);
         PIDController.setFF(kFF);
 
-        // If kPositionalConvertionFactor is 0, then there is no configuration. Otherwise, convert via the factor
-        if (kPositionalConvertionFactor != 0) {
-            Encoder.setPositionConversionFactor(kPositionalConvertionFactor);
+        // If kPositionalConversionFactor is 0, then there is no configuration. Otherwise, convert via the factor
+        if (kPositionalConversionFactor != 0) {
+            Encoder.setPositionConversionFactor(kPositionalConversionFactor);
         }
 
     }
