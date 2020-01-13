@@ -15,5 +15,8 @@ public class RobotMap {
 
     // The channel ID for the Turret on the TurretSubsystem
     public static final int Turret = 5;
+    // The channel ID for the Launcher on the LauncherSubsystem
+    public static final int Launcher1 = 6;
+    public static final int Launcher2 = 7;
 
 }

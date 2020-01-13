@@ -4,6 +4,14 @@ Author: Rico Zhu                Date: January 13th, 2019
 
 TurretSubsystem Class
 
+This is a subsytem that uses Positional PID called TurretSubsytem for the Turret. 
+
+It packages frc.robot.subsystems
+
+It contaions methods for setting positional PID control over the turret, initalizes 
+the CANSparkMaxPIDWrapper, sets the parameters for the positional conversion factor, 
+sets the min and max output range and calls the controller for the positional setpoint.
+
 ------------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;

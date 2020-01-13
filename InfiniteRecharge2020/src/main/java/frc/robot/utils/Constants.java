@@ -33,4 +33,16 @@ public class Constants {
     public static final double kTurretMinOutput = -1;
     public static final double kTurretMaxOutput = 1;
 
+    // Launcher Subsytem Constants
+
+    // Launcher positional PID tune values
+    public static final double kLauncherP = 0.0;
+    public static final double kLauncherI = 0.0;
+    public static final double kLauncherD = 0.0;
+    public static final double kLauncherFF = 0.0;
+
+    // Launcher postiional output range
+    public static final double kLauncherMinOutput = -1;
+    public static final double kLauncherMaxOutput = 1;
+
 }
