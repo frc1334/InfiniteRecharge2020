@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------
 
-Author: Rico Zhu                Date: January 13th, 2019
+Author: Rico Zhu, Emily DiLauro and Nolan Smyth                 Date: January 13th, 2019
 
 TurretSubsystem Class
 
