@@ -30,8 +30,8 @@ public class CANSparkMaxPIDWrapper {
     // PID Controller that will be read off the SparkMax
     CANPIDController PIDController;
 
-    // Default controller with an integer channel input (only with Bruhsless motors)
-    public CANSparkMaxPIDWrapper (int channel) {
+    // Default controller with an integer channel input (only with Bruhsless motors). It also comes with the specification of the mode to operate PID with: position, velocity and Smart Motion (0, 1, 2 respectively)
+    public CANSparkMaxPIDWrapper (int channel, int mode) {
 
         // Initialize the SparkMax and all subsequent global variables
         SparkMax = new CANSparkMax(channel, MotorType.kBrushless);
@@ -40,16 +40,27 @@ public class CANSparkMaxPIDWrapper {
         Encoder = SparkMax.getEncoder();
         PIDController = SparkMax.getPIDController();
 
+        // Specific PID mode configurations
+        if (mode == 0) {
+            // Mode 0, relative PID position control - Reset encoder values to 0
+            Encoder.setPositionConversionFactor(0);
+        }
+
     }
 
-    // This void is called to set the PID Tuning values of the SparkMax's PIDController. This includes kP, kI, kD and kFF
-    public void setPIDValues (double kP, double kI, double kD, double kFF, double kMinOutput, double kMaxOutput) {
+    // This void is called to set the PID Tuning values of the SparkMax's PIDController. This includes kP, kI, kD and kFF. It also allows for a conversion factor for positional control.
+    public void setPIDValues (double kP, double kI, double kD, double kFF, double kPositionalConvertionFactor) {
 
         // Set the input tune values to the PIDController
         PIDController.setP(kP);
         PIDController.setI(kI);
         PIDController.setD(kD);
         PIDController.setFF(kFF);
+
+        // If kPositionalConvertionFactor is 0, then there is no configuration. Otherwise, convert via the factor
+        if (kPositionalConvertionFactor != 0) {
+            Encoder.setPositionConversionFactor(kPositionalConvertionFactor);
+        }
 
     }
 
@@ -69,6 +80,16 @@ public class CANSparkMaxPIDWrapper {
     public void setPIDVelocity (double setpoint) {
         // Call the PID set velocity mode reference function
         PIDController.setReference(setpoint, ControlType.kVelocity);
+    }
+
+    // This double method returns the current position of the PID Controller
+    public double getPosition () {
+        return Encoder.getPosition();
+    }
+
+    // This double method returns the current velocity (in rpm) of the PID Controller
+    public double getVelocity () {
+        return Encoder.getVelocity();
     }
 
 }
