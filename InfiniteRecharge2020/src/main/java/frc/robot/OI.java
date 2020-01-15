@@ -15,6 +15,7 @@ controller data (e.g., DriveSubsystem drive operations)
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 
@@ -22,5 +23,13 @@ public class OI {
     XboxController Driver = new XboxController(0);
     // Operator XBox360Controller (WPILIB) Object, initialized with port 1
     XboxController Operator = new XboxController(1);
+
+    // Driver Inidividual Controller Devices
+    JoystickButton  DriverAButton;
+    // Operator Individual Controller Devices
+    JoystickButton  OperatorAButton;
+    JoystickButton  OperatorBButton;
+    JoystickButton  OperatorXButton;
+    JoystickButton  OperatorYButton;
 
 }
