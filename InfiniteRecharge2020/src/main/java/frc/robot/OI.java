@@ -14,8 +14,13 @@ controller data (e.g., DriveSubsystem drive operations)
 ------------------------------------------------------------------------------*/
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 public class OI {
 
-
+    // Driver XBox360Controller (WPILIB) Object, initialized with port 0
+    XboxController Driver = new XboxController(0);
+    // Operator XBox360Controller (WPILIB) Object, initialized with port 1
+    XboxController Operator = new XboxController(1);
 
 }
