@@ -4,6 +4,8 @@ Author: Rico Zhu, Emily DiLauro and Nolan Smyth              Date: January 14th,
 
 LimelightSubsystem Class
 
+
+
 ------------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
@@ -45,6 +47,21 @@ public class LimelightSubsystem extends SubsystemBase {
     xDisplacement = tx.getDouble(0.0);
     yDisplacement = ty.getDouble(0.0);
     targetArea = ta.getDouble(0.0);
+  }
+
+  // This is a double getter method for retrieving the horizontal angle displacement
+  public double getXDisplacement() {
+    return xDisplacement;
+  }
+
+  // This is a double getter method for retrieving the vertical angle displacement
+  public double getYDisplacement() {
+    return yDisplacement;
+  }
+
+  // This is a double getter method for retrieving the target area
+  public double getTargetArea() {
+    return targetArea;
   }
 
 }
