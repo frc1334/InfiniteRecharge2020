@@ -4,7 +4,8 @@ Author: Rico Zhu, Emily DiLauro and Nolan Smyth              Date: January 14th,
 
 LimelightSubsystem Class
 
-
+Set up NetworkTable and varibles for xDisplacement, yDisplacement and targetArea for LimeLight. 
+Creat getter methods for xDisplacement, yDisplacement and targetArea.
 
 ------------------------------------------------------------------------------*/
 
