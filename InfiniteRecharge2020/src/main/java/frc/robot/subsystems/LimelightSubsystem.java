@@ -22,6 +22,11 @@ public class LimelightSubsystem extends SubsystemBase {
   NetworkTableEntry ty;
   NetworkTableEntry ta;
 
+  // Variables from for storing the Limelight NetworkTable stream updates
+  double xDisplacement;
+  double yDisplacement;
+  double targetArea;
+
   public LimelightSubsystem() {
 
     // Initialize the NetworkTable for the limelight
@@ -36,7 +41,10 @@ public class LimelightSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    // Update the NetworkTable data stream entries periodically
+    xDisplacement = tx.getDouble(0.0);
+    yDisplacement = ty.getDouble(0.0);
+    targetArea = ta.getDouble(0.0);
   }
 
 }
