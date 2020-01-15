@@ -32,4 +32,18 @@ public class OI {
     JoystickButton  OperatorXButton;
     JoystickButton  OperatorYButton;
 
+    // Default constructor which initializes and maps the controls (initialized above, e.g., OperatorAButton) to the correct ports on the XBox controller and the right command
+    public OI () {
+
+        // Inititalize the Driver Controls
+        DriverAButton = new JoystickButton(Driver, 0);
+
+        // Inititalize the Operator Controls
+        OperatorAButton = new JoystickButton(Operator, 0);
+        OperatorBButton = new JoystickButton(Operator, 1);
+        OperatorXButton = new JoystickButton(Operator, 2);
+        OperatorYButton = new JoystickButton(Operator, 3);
+    
+    }
+
 }
