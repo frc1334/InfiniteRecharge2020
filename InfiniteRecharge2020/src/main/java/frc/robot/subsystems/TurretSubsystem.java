@@ -47,4 +47,22 @@ public class TurretSubsystem extends SubsystemBase {
     Turret.setPIDPosition(setpoint);
   }
 
+  // This double method returns the current turret position
+  public double getTurretPosition () {
+    return Turret.getPosition();
+  }
+
+  // This boolean method returns whether the current position is within range of an argument setpoint
+  public boolean inRange (double setpoint) {
+
+    // See if the current position is within 
+    if (Math.abs(setpoint - getTurretPosition()) <= Constants.kTurretTolerance) {
+      return true;
+    }
+
+    // Otherwise, return false
+    return false;
+
+  }
+
 }

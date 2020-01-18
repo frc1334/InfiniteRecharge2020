@@ -14,7 +14,11 @@ controller data (e.g., DriveSubsystem drive operations)
 ------------------------------------------------------------------------------*/
 package frc.robot;
 
+import frc.robot.commands.*;
+import frc.robot.commands.turret.TurretPIDPosition;
+
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
@@ -43,7 +47,31 @@ public class OI {
         OperatorBButton = new JoystickButton(Operator, 1);
         OperatorXButton = new JoystickButton(Operator, 2);
         OperatorYButton = new JoystickButton(Operator, 3);
+
+        OperatorAButton.whenPressed(new TurretPIDPosition(90));
     
+    }
+
+    // This double (decimal number) method returns the difference between the left and right Driver triggers (How much to move forwards/backwards)
+    public double getDriverSpeed () {
+
+        if (Math.abs(Driver.getTriggerAxis(Hand.kLeft) - Driver.getTriggerAxis(Hand.kRight)) > 0.15) {
+            return Driver.getTriggerAxis(Hand.kLeft) - Driver.getTriggerAxis(Hand.kRight);
+        }
+
+        return 0.0;
+
+    }
+    
+    // This double method returns the x-axis of the Driver top/turn joystick. The value returned would determine how much to turn to the left or right
+    public double getDriverTurn () {
+
+        if (Math.abs(Driver.getRawAxis(0)) > 0.15) {
+            return Driver.getRawAxis(0);
+        }
+
+        return 0.0;
+
     }
 
 }

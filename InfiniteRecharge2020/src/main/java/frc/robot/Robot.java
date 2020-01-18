@@ -7,9 +7,15 @@
 
 package frc.robot;
 
+import frc.robot.commands.drive.DriveCommand;
+
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,10 +25,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  // The subsystems called used in OI
+  public static DriveSubsystem DriveSubsystem = new DriveSubsystem();
+  public static TurretSubsystem TurretSubsystem = new TurretSubsystem();
+
+  // Initialize a new Operator Interface (OI) object
+  public static OI OI = new OI();
+
+  // Initialize the commands
+  DriveCommand DriveCommand = new DriveCommand();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -86,6 +103,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+
+    // Start the CommandScheduler to add Command calls to the current running stack
+    CommandScheduler.getInstance().run();
+    DriveCommand.execute();
+
   }
 
   /**

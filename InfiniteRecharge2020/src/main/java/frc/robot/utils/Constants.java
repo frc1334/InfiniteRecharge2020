@@ -29,9 +29,12 @@ public class Constants {
     // Turret positional conversion factor
     public static final double kTurretPositionalConversionFactor = 360;
 
-    // Turret postiional output range
+    // Turret postisional output range
     public static final double kTurretMinOutput = -1;
     public static final double kTurretMaxOutput = 1;
+
+    // Turret tolerance levels
+    public static final double kTurretTolerance = 6;
 
     // Launcher Subsytem Constants
 
