@@ -82,6 +82,11 @@ public class CANSparkMaxPIDWrapper {
         PIDController.setReference(setpoint, ControlType.kVelocity);
     }
 
+    // This void method runs percent input into the current SparkMax
+    public void setPercentOutput (double output) {
+        SparkMax.set(output);
+    }
+
     // This double method returns the current position of the PID Controller
     public double getPosition () {
         return Encoder.getPosition();

@@ -19,10 +19,10 @@ package frc.robot.subsystems;
 import frc.robot.utils.RobotMap;
 import frc.robot.utils.Constants;
 import frc.robot.utils.CANSparkMaxPIDWrapper;
-
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class TurretSubsystem extends SubsystemBase {
+public class TurretSubsystem extends SubsystemBase implements Subsystem {
 
   // Global CANSparkMaxPIDWrapper object used for positional PID control over the turret
   CANSparkMaxPIDWrapper Turret;
@@ -50,6 +50,11 @@ public class TurretSubsystem extends SubsystemBase {
   // This double method returns the current turret position
   public double getTurretPosition () {
     return Turret.getPosition();
+  }
+
+  // This void method runs percent input into the Turret SparkMax
+  public void turretPercentOutput (double output) {
+    Turret.setPercentOutput(output);
   }
 
   // This boolean method returns whether the current position is within range of an argument setpoint

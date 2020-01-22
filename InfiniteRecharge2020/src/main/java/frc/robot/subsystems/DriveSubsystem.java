@@ -37,7 +37,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     // Multiply the left and right voltage factors to limit it to 70%
     left *= 0.7;
-    right *= 0.7;
+    right *= 7;
 
     // Set the left CANSparkMaxs to the left side drivetrain value
     Left1.set(left);

@@ -9,9 +9,12 @@ package frc.robot.commands.turret;
 
 import frc.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
+import java.util.Set;
 
-public class TurretPIDPosition extends Command {
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+
+public class TurretPIDPosition implements Command {
 
   double setpoint;
 
@@ -22,21 +25,29 @@ public class TurretPIDPosition extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("INITIALIZE");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.TurretSubsystem.setTurretPosition(setpoint);
+    // Robot.TurretSubsystem.setTurretPosition(setpoint);
+    System.out.println("EXECUTING");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Robot.TurretSubsystem.inRange(setpoint)) {
-      return true;
-    }
+    /*
+     * if (Robot.TurretSubsystem.inRange(setpoint)) { return true; }
+     */
     return false;
+  }
+
+  @Override
+  public Set<Subsystem> getRequirements() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }

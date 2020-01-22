@@ -14,41 +14,41 @@ controller data (e.g., DriveSubsystem drive operations)
 ------------------------------------------------------------------------------*/
 package frc.robot;
 
-import frc.robot.commands.*;
 import frc.robot.commands.turret.TurretPIDPosition;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class OI {
 
     // Driver XBox360Controller (WPILIB) Object, initialized with port 0
-    XboxController Driver = new XboxController(0);
+    public XboxController Driver = new XboxController(0);
     // Operator XBox360Controller (WPILIB) Object, initialized with port 1
-    XboxController Operator = new XboxController(1);
+    public XboxController Operator = new XboxController(1);
 
     // Driver Inidividual Controller Devices
-    JoystickButton  DriverAButton;
+    public JoystickButton  DriverAButton;
     // Operator Individual Controller Devices
-    JoystickButton  OperatorAButton;
-    JoystickButton  OperatorBButton;
-    JoystickButton  OperatorXButton;
-    JoystickButton  OperatorYButton;
+    public JoystickButton  OperatorAButton;
+    public JoystickButton  OperatorBButton;
+    public JoystickButton  OperatorXButton;
+    public JoystickButton  OperatorYButton;
 
     // Default constructor which initializes and maps the controls (initialized above, e.g., OperatorAButton) to the correct ports on the XBox controller and the right command
     public OI () {
 
         // Inititalize the Driver Controls
-        DriverAButton = new JoystickButton(Driver, 0);
+        DriverAButton = new JoystickButton(Driver, Button.kA.value);
 
         // Inititalize the Operator Controls
-        OperatorAButton = new JoystickButton(Operator, 0);
-        OperatorBButton = new JoystickButton(Operator, 1);
-        OperatorXButton = new JoystickButton(Operator, 2);
-        OperatorYButton = new JoystickButton(Operator, 3);
+        OperatorAButton = new JoystickButton(Operator, Button.kA.value);
+        OperatorBButton = new JoystickButton(Operator, Button.kB.value);
+        OperatorXButton = new JoystickButton(Operator, Button.kX.value);
+        OperatorYButton = new JoystickButton(Operator, Button.kY.value);
 
-        OperatorAButton.whenPressed(new TurretPIDPosition(90));
+        DriverAButton.whenPressed(new TurretPIDPosition(1024));
     
     }
 
