@@ -34,7 +34,8 @@ public class TurretSubsystem extends SubsystemBase implements Subsystem {
     Turret = new CANSparkMaxPIDWrapper(RobotMap.Turret, Constants.kPositionMode);
 
     // Set the PID tune parameters and positional conversion factor
-    Turret.setPIDValues(Constants.kTurretP, Constants.kTurretI, Constants.kTurretD, Constants.kTurretFF, Constants.kTurretPositionalConversionFactor);;
+    Turret.setPIDValues(Constants.kTurretP, Constants.kTurretI,
+     Constants.kTurretD, Constants.kTurretFF, Constants.kTurretPositionalConversionFactor);;
 
     // Set the output range (from -1 to 1) on the Turret
     Turret.setPIDOutputRange(Constants.kTurretMinOutput, Constants.kTurretMaxOutput);

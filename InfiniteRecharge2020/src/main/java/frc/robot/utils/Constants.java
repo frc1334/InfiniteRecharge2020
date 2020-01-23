@@ -21,20 +21,20 @@ public class Constants {
     // Turret Subsytem Constants
 
     // Turret positional PID tune values
-    public static final double kTurretP = 0.0;
-    public static final double kTurretI = 0.0;
-    public static final double kTurretD = 0.0;
+    public static final double kTurretP = 4.2; // 4.2
+    public static final double kTurretI = 7.735e-8; // 7.7e-8
+    public static final double kTurretD = 0.85; // 0.85
     public static final double kTurretFF = 0.0;
 
     // Turret positional conversion factor
-    public static final double kTurretPositionalConversionFactor = 360;
+    public static final double kTurretPositionalConversionFactor = 2048;
 
     // Turret postisional output range
-    public static final double kTurretMinOutput = -1;
-    public static final double kTurretMaxOutput = 1;
+    public static final double kTurretMinOutput = -0.6;
+    public static final double kTurretMaxOutput = 0.6;
 
     // Turret tolerance levels
-    public static final double kTurretTolerance = 6;
+    public static final double kTurretTolerance = 164;
 
     // Launcher Subsytem Constants
 

@@ -18,7 +18,6 @@ import frc.robot.commands.turret.TurretPIDPosition;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class OI {
@@ -40,15 +39,15 @@ public class OI {
     public OI () {
 
         // Inititalize the Driver Controls
-        DriverAButton = new JoystickButton(Driver, Button.kA.value);
+        DriverAButton = new JoystickButton(Driver, 1);
 
         // Inititalize the Operator Controls
-        OperatorAButton = new JoystickButton(Operator, Button.kA.value);
-        OperatorBButton = new JoystickButton(Operator, Button.kB.value);
-        OperatorXButton = new JoystickButton(Operator, Button.kX.value);
-        OperatorYButton = new JoystickButton(Operator, Button.kY.value);
+        OperatorAButton = new JoystickButton(Operator, 1);
+        OperatorBButton = new JoystickButton(Operator, 2);
+        OperatorXButton = new JoystickButton(Operator, 3);
+        OperatorYButton = new JoystickButton(Operator, 4);
 
-        DriverAButton.whenPressed(new TurretPIDPosition(1024));
+        DriverAButton.whenPressed(new TurretPIDPosition(42000));
     
     }
 

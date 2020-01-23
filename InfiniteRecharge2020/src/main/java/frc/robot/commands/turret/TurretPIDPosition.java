@@ -12,42 +12,39 @@ import frc.robot.Robot;
 import java.util.Set;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
-public class TurretPIDPosition implements Command {
+public class TurretPIDPosition extends CommandBase implements Command {
 
   double setpoint;
 
   public TurretPIDPosition(double setpoint) {
     this.setpoint = setpoint;
+    addRequirements(Robot.TurretSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("INITIALIZE");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Robot.TurretSubsystem.setTurretPosition(setpoint);
-    System.out.println("EXECUTING");
+    System.out.println("SETPOINT:      " + setpoint);
+    Robot.TurretSubsystem.setTurretPosition(setpoint);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    /*
-     * if (Robot.TurretSubsystem.inRange(setpoint)) { return true; }
-     */
+    if (Robot.TurretSubsystem.inRange(setpoint)) { return true; }
     return false;
   }
 
-  @Override
-  public Set<Subsystem> getRequirements() {
-    // TODO Auto-generated method stub
-    return null;
+  public void setNewSetpoint (double nSetpoint) {
+    setpoint = nSetpoint;
   }
 
 }
