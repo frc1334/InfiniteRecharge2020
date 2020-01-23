@@ -8,13 +8,11 @@
 package frc.robot;
 
 import frc.robot.commands.drive.DriveCommand;
-import frc.robot.commands.turret.TurretPIDPosition;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -44,11 +42,7 @@ public class Robot extends TimedRobot {
   // Initialize the commands
   DriveCommand DriveCommand = new DriveCommand();
 
-  CommandScheduler cmd = CommandScheduler.getInstance();
-
-  /*TurretPIDPosition TurretCommand = new TurretPIDPosition(42000);
-
-  double trackPoint = 42000;*/
+  CommandScheduler commandScheduler = CommandScheduler.getInstance();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -114,28 +108,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     // Start the CommandScheduler to add Command calls to the current running stack
-    cmd.run();
+    commandScheduler.run();
     DriveCommand.execute();
-/*
-    double xDis = LimelightSubsystem.getXDisplacement();
 
-    if (Math.abs(xDis) > 10.0) {
-
-      trackPoint += (xDis / 2048) * (135680);
-
-      // 135,680 ticks (on neo) for 270 degrees of turn on turret
-
-    }
-
-    if (!TurretSubsystem.inRange(trackPoint)) {
-      TurretCommand.setNewSetpoint(trackPoint);
-      TurretCommand.execute();
-      System.out.println("DIFFERENCE:     " + (TurretSubsystem.getTurretPosition() - trackPoint));
-    } else {
-      TurretSubsystem.turretPercentOutput(0.0);
-      System.out.println("ALL GOOD");
-    }
-*/
   }
 
   /**
