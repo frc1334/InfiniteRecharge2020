@@ -13,6 +13,8 @@ package frc.robot.utils;
 
 public class RobotMap {
 
+    // Motors
+
     // The channel IDs for the 4 Drive Spark Maxs (Left1, Left2, Right1, Right2)
     public static final int Left1 = 1;
     public static final int Left2 = 2;
@@ -25,5 +27,14 @@ public class RobotMap {
     // The channel ID for the Launcher on the LauncherSubsystem
     public static final int Launcher1 = 6;
     public static final int Launcher2 = 7;
+
+    // The channel ID for the Intake on the IntakeSubsystem
+    public static final int Intake = 8;
+
+
+    // Pneumatics 
+
+    // The channel ID for the Compressor on the PCM (Pneumatics Control Module)
+    public static final int Compressor = 0;
 
 }
