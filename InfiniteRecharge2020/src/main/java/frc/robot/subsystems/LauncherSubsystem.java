@@ -35,9 +35,28 @@ public class LauncherSubsystem extends SubsystemBase {
     Launcher1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     Launcher2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
+    // Set the second Talon to follow the first Talon
+    Launcher2.set(ControlMode.Follower, RobotMap.Launcher1);
+
     // Invert the first Talon (Left and Right can now run the same Velocity PID RPM)
     Launcher1.setInverted(true);
 
+    // Since the second Talon is on follower mode, only the first Talon needs to be tuned for PID. (The second Talon will follow ALL voltage signals, uninverted)
+    Launcher1.config_kP(0, Constants.kLauncherP);
+    Launcher1.config_kI(0, Constants.kLauncherI);
+    Launcher1.config_kD(0, Constants.kLauncherD);
+    Launcher1.config_kF(0, Constants.kLauncherFF);
+
+    // Configure the peak output (max in magnitude both forwards and reverse) for the first Talon
+    Launcher1.configPeakOutputForward(Constants.kLauncherMaxOutput);
+    Launcher1.configPeakOutputReverse(Constants.kLauncherMinOutput);
+
+  }
+
+  // This void method sets a velocity PID setpoint on the Talons
+  public void setLauncherVelocity (double setpoint) {
+    // Set the first Talon's PID target to the setpoing (second Talon will follow)
+    Launcher1.set(ControlMode.Velocity, setpoint);
   }
 
 }
