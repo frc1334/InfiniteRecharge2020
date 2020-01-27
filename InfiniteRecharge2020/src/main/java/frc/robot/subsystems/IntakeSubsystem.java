@@ -4,7 +4,9 @@ Author: Rico Zhu                Date: January 27th, 2020
 
 IntakeSubsystem Class
 
-This subsystem will function for an intake powered by a 775 TalonSRX Motor.
+This subsystem will function for an intake powered by a 775 TalonSRX Motor. The
+Subsystem also contains 2 DoubleSolenoids for the actuation of the Intake (i.e.,
+deployment and retraction).
 
 ------------------------------------------------------------------------------*/
 
