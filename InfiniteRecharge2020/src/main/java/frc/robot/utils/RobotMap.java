@@ -37,4 +37,10 @@ public class RobotMap {
     // The channel ID for the Compressor on the PCM (Pneumatics Control Module)
     public static final int Compressor = 0;
 
+    // The channel ID for the two double solenoids used for the pistons on the Intake
+    public static final int IntakeLeft1 = 1;
+    public static final int IntakeLeft2 = 2;
+    public static final int IntakeRight1 = 3;
+    public static final int IntakeRight2 = 4;
+
 }
