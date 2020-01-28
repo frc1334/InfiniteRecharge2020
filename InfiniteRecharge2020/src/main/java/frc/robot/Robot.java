@@ -7,10 +7,16 @@
 
 package frc.robot;
 
-import frc.robot.commands.drive.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.PneumaticsSubsytem;
 import frc.robot.subsystems.TurretSubsystem;
+import frc.robot.subsystems.VerticalFeederSubsystem;
+
+import frc.robot.commands.drive.DriveCommand;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -34,7 +40,12 @@ public class Robot extends TimedRobot {
   // The subsystems called used in OI
   public static DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public static TurretSubsystem TurretSubsystem = new TurretSubsystem();
+  public static LauncherSubsystem LauncherSubsystem = new LauncherSubsystem();
   public static LimelightSubsystem LimelightSubsystem = new LimelightSubsystem();
+  public static PneumaticsSubsytem PneumaticsSubsystem = new PneumaticsSubsytem();
+  public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+  public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
+  public static VerticalFeederSubsystem VerticalFeederSubsystem = new VerticalFeederSubsystem();
 
   // Initialize a new Operator Interface (OI) object
   public static OI OI = new OI();
@@ -109,7 +120,7 @@ public class Robot extends TimedRobot {
 
     // Start the CommandScheduler to add Command calls to the current running stack
     commandScheduler.run();
-    DriveCommand.execute();
+    DriveCommand.schedule();
 
   }
 
@@ -119,4 +130,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }
