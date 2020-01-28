@@ -38,14 +38,45 @@ public class Constants {
 
     // Launcher Subsytem Constants
 
-    // Launcher positional PID tune values
+    // Launcher velocity PID tune values
     public static final double kLauncherP = 0.0;
     public static final double kLauncherI = 0.0;
     public static final double kLauncherD = 0.0;
     public static final double kLauncherFF = 0.0;
 
-    // Launcher postiional output range
+    // Launcher velocity output range
     public static final double kLauncherMinOutput = -1;
     public static final double kLauncherMaxOutput = 1;
+
+    // Indexer Subsystem Constants
+
+    // Indexer velocity PID tune values
+    public static final double kIndexerP = 0.0;
+    public static final double kIndexerI = 0.0;
+    public static final double kIndexerD = 0.0;
+    public static final double kIndexerFF = 0.0;
+
+    // Indexer velocity output range
+    public static final double kIndexerMinOutput = -1;
+    public static final double kIndexerMaxOutput = 1;
+
+    // Vertical Feeder Subsystem Constants
+
+    // Vertical Feeder velocity PID tune values for the front and back belts
+
+    public static final double kVerticalFeederFrontP = 0.0;
+    public static final double kVerticalFeederFrontI = 0.0;
+    public static final double kVerticalFeederFrontD = 0.0;
+    public static final double kVerticalFeederFrontFF = 0.0;
+
+    public static final double kVerticalFeederBackP = 0.0;
+    public static final double kVerticalFeederBackI = 0.0;
+    public static final double kVerticalFeederBackD = 0.0;
+    public static final double kVerticalFeederBackFF = 0.0;   
+
+    // Vertical Feeder velocity output range
+    public static final double kVerticalFeederMinOutput = -1;
+    public static final double kVerticalFeederMaxOutput = 1;
+
 
 }

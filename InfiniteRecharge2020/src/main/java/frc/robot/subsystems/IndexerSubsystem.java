@@ -21,8 +21,21 @@ public class IndexerSubsystem extends SubsystemBase implements Subsystem {
   CANSparkMaxPIDWrapper Feeder;
 
   public IndexerSubsystem() {
+
     // Initialize the feeder motor on the IndexerSubsystem
     Feeder = new CANSparkMaxPIDWrapper(RobotMap.Feeder, 1);
+
+    // Configure the PID tuning values for the feeder
+    Feeder.setPIDValues(Constants.kIndexerP, Constants.kIndexerI, Constants.kIndexerD, Constants.kIndexerFF, 0);
+
+    // Configure the peak output ranges for the feeder
+    Feeder.setPIDOutputRange(Constants.kIndexerMinOutput, Constants.kIndexerMaxOutput);
+
+  }
+
+  // This void method will set a velocity PID target to the Feeder motor
+  public void setIndexerVelocity (double setpoint) {
+    Feeder.setPIDVelocity(setpoint);
   }
 
 }
