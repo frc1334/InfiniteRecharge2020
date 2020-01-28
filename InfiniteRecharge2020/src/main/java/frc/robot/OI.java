@@ -14,6 +14,7 @@ controller data (e.g., DriveSubsystem drive operations)
 ------------------------------------------------------------------------------*/
 package frc.robot;
 
+import frc.robot.commands.subroutines.IntakeRoutine;
 import frc.robot.commands.turret.TurretPIDPosition;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -48,6 +49,7 @@ public class OI {
         OperatorYButton = new JoystickButton(Operator, 4);
 
         DriverAButton.whenPressed(new TurretPIDPosition(42000));
+        OperatorAButton.whileHeld(new IntakeRoutine());
     
     }
 

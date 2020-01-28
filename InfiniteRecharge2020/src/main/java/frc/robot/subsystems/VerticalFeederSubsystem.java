@@ -47,4 +47,13 @@ public class VerticalFeederSubsystem extends SubsystemBase implements Subsystem 
     BackBelt.setPIDVelocity(setpoint);
   }
 
+  // This void method acts as an injection point for running both the front and back belts in opposite directions
+  public void setVerticalFeederVelocity (double setpoint) {
+
+    // Set both belts of the Vertical Feeder (front and back) in opposite directinos (to transport balls in one direction)
+    setFrontBeltVelocity(setpoint);
+    setBackBeltVelocity(-setpoint);
+
+  }
+
 }
