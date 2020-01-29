@@ -18,6 +18,11 @@ public class Constants {
     public static final int kVelocityMode = 1;
     public static final int kSmartMotionMode = 2;
 
+    // Drive Subsystem Constants
+    
+    // This defines the conversion factor from encoder ticks to meters for both sides of the drivetrain
+    public static final double kDistancePerTick = 1.0;
+
     // Turret Subsytem Constants
 
     // Turret positional PID tune values

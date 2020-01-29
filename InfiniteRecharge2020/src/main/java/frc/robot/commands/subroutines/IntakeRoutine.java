@@ -12,10 +12,9 @@ import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class IntakeRoutine extends CommandBase {
-  /**
-   * Creates a new IntakeRoutine.
-   */
+
   public IntakeRoutine() {
+    // Attach the Intake and the Indexer subsystems as requirements
     addRequirements(Robot.IntakeSubsystem);
     addRequirements(Robot.IndexerSubsystem);
   }
@@ -46,4 +45,5 @@ public class IntakeRoutine extends CommandBase {
   public boolean isFinished() {
     return false;
   }
+  
 }
