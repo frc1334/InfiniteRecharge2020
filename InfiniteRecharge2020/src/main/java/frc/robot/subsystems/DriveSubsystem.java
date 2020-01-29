@@ -49,7 +49,7 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   // The differential drivetrain (Tank/West Coast) used on bot. Used for auto calculations
   DifferentialDrive DifferentialDriveTrain = new DifferentialDrive(LeftControllerGroup, RightControllerGroup);
 
-  // The Odometry module (for calculating Gyro angles) of the drivetrain
+  // The Odometry module (for calculating 2D positions) of the robot
   DifferentialDriveOdometry Odometry;
 
   public DriveSubsystem() {
