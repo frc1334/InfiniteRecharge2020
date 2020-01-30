@@ -15,7 +15,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.PneumaticsSubsytem;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.subsystems.VerticalFeederSubsystem;
-
+import frc.robot.utils.AutoTrajectoryCommandGenerator;
 import frc.robot.commands.drive.DriveCommand;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -49,6 +49,9 @@ public class Robot extends TimedRobot {
 
   // Initialize a new Operator Interface (OI) object
   public static OI OI = new OI();
+
+  // Initialize a new AutoTrajectoryCommandGenerator for global use
+  public static AutoTrajectoryCommandGenerator AutoTrajectoryGenerator = new AutoTrajectoryCommandGenerator();
 
   // Initialize the commands
   DriveCommand DriveCommand = new DriveCommand();

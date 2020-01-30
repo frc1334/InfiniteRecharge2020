@@ -29,30 +29,12 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 
 public class AutoTrajectoryCommandGenerator {
 
-    Path trajectoryPath;
-    Trajectory trajectory;
-
-    // The default constructor takes in a string for the location of the Path Weaver generated json file (with coordinates)
-    public AutoTrajectoryCommandGenerator (String AutoPathWeaverJSON) {
-
-        try {
-            trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(AutoPathWeaverJSON);
-            trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-        } catch (IOException ex) {
-            DriverStation.reportError("Unable to open trajectory: " + AutoPathWeaverJSON, ex.getStackTrace());
-        }
-
-    }
-
     // This Command method returns a Command (RamseteCommand) from a given string path to a Path Weaver json file
-    public Command generateCommand (String AutoPathWeaverJSON) {
-        
-        try {
-            trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(AutoPathWeaverJSON);
-            trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-        } catch (IOException ex) {
-            DriverStation.reportError("Unable to open trajectory: " + AutoPathWeaverJSON, ex.getStackTrace());
-        }
+    public Command generateCommand (String AutoPathWeaverJSON) throws IOException {
+
+        // Read the current trajectory json path from the Roborio file system and generate the trajectory from that
+        Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(AutoPathWeaverJSON);
+        Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
 
         // Create a voltage constraint to ensure we don't accelerate too fast
         var autoVoltageConstraint =
