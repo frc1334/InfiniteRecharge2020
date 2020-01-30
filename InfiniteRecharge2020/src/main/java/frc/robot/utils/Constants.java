@@ -11,6 +11,8 @@ custom pre-set values to specific variables.
 
 package frc.robot.utils;
 
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+
 public class Constants {
 
     // The definitions for the CANSparkMaxPIDWrapper class mode declarations
@@ -22,6 +24,24 @@ public class Constants {
     
     // This defines the conversion factor from encoder ticks to meters for both sides of the drivetrain
     public static final double kDistancePerTick = 1.0;
+
+    // This defines the voltage constraints for the drivetrain
+    public static final double ksVolts = 0.0;
+    public static final double kvVoltSecondsPerMeter = 0.0;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.0;
+
+    // Drivetrain trajectory following configurations
+    public static final double kMaxSpeedMetersPerSecond = 0.0;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 0.0;
+    public static final double kTrackwidthMeters = 0.0;
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+
+    // Drivetrain RamseteCommand constants
+    public static final double kRamseteB = 0.0;
+    public static final double kRamseteZeta = 0.0;
+
+    // Drivetrain Velocity constanrs
+    public static final double kPDriveVel = 0.0;
 
     // Turret Subsytem Constants
 
