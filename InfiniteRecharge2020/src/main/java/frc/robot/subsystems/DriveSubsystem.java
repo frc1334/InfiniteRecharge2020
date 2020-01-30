@@ -54,6 +54,14 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
 
   public DriveSubsystem() {
 
+    // Enable follower on the 2 follower CANSpark Maxs
+    Left2.follow(Left1);
+    Right2.follow(Right1);
+
+    // Invert one side of the drivetrain
+    Left1.setInverted(false);
+    Right1.setInverted(true);
+
     // Reset the encoders to start at position 0
     LeftEncoder.setPosition(0);
     RightEncoder.setPosition(0);
@@ -90,7 +98,7 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
 
     // Set the voltage drive for the left and right sides of the drivetrain
     LeftControllerGroup.setVoltage(left);
-    RightControllerGroup.setVoltage(-right);
+    RightControllerGroup.setVoltage(right);
 
     // Feed that voltage to the drivetrain
     DifferentialDriveTrain.feed();

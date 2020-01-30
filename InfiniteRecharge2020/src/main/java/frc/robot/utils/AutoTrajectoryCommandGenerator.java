@@ -72,6 +72,9 @@ public class AutoTrajectoryCommandGenerator {
                 // Apply the voltage constraint
                 .addConstraint(autoVoltageConstraint);
 
+        // var transform = Robot.DriveSubsystem.getFieldPosition().minus(trajectory.getInitialPose());
+        // trajectory = trajectory.transformBy(transform);
+
         RamseteCommand ramseteCommand = new RamseteCommand(
             trajectory,
             Robot.DriveSubsystem::getFieldPosition,
