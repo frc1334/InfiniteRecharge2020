@@ -11,6 +11,7 @@ import frc.robot.Robot;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -18,6 +19,8 @@ import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
@@ -36,7 +39,7 @@ public class AutoTrajectoryCommandGenerator {
         Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(AutoPathWeaverJSON);
         Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
 
-        // Create a voltage constraint to ensure we don't accelerate too fast
+        // Create a voltage constraint to ensure we don't accelerate too fast. 10 refers to the 10V max limit
         var autoVoltageConstraint =
             new DifferentialDriveVoltageConstraint(
                 new SimpleMotorFeedforward(Constants.ksVolts,
@@ -54,11 +57,27 @@ public class AutoTrajectoryCommandGenerator {
                 // Apply the voltage constraint
                 .addConstraint(autoVoltageConstraint);
 
+        // An example trajectory to follow.  All units in meters.
+        Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            new Pose2d(0, 0, new Rotation2d(0)),
+            // Pass through these two interior waypoints, making an 's' curve path
+            List.of(
+                new Translation2d(1, 1),
+                new Translation2d(2, -1)
+            ),
+            // End 3 meters straight ahead of where we started, facing forward
+            new Pose2d(3, 0, new Rotation2d(0)),
+            // Pass config
+            config
+        );
+
         // var transform = Robot.DriveSubsystem.getFieldPosition().minus(trajectory.getInitialPose());
         // trajectory = trajectory.transformBy(transform);
 
+        // Create a new RamseteCommand with the newly buffered trajectory
         RamseteCommand ramseteCommand = new RamseteCommand(
-            trajectory,
+            exampleTrajectory,
             Robot.DriveSubsystem::getFieldPosition,
             new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
             new SimpleMotorFeedforward(Constants.ksVolts,

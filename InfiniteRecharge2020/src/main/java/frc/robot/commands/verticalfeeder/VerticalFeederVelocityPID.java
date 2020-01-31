@@ -14,9 +14,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class VerticalFeederVelocityPID extends CommandBase implements Command {
 
-  double setpoint;
+  double frontVelocity;
+  double backVelocity;
 
-  public VerticalFeederVelocityPID(double setpoint) {
+  public VerticalFeederVelocityPID(double frontVelocity, double backVelocity) {
+    this.frontVelocity = frontVelocity;
+    this.backVelocity = backVelocity;
     addRequirements(Robot.VerticalFeederSubsystem);
   }
 
@@ -28,7 +31,8 @@ public class VerticalFeederVelocityPID extends CommandBase implements Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.VerticalFeederSubsystem.setVerticalFeederVelocity(setpoint);
+    Robot.VerticalFeederSubsystem.setFrontBeltVelocity(frontVelocity);
+    Robot.VerticalFeederSubsystem.setBackBeltVelocity(backVelocity);
   }
 
   // Called once the command ends or is interrupted.

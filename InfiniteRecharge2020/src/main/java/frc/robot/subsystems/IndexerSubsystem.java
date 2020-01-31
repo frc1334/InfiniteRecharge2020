@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexerSubsystem extends SubsystemBase implements Subsystem {
 
-  // The motor at the front of the hopper. Feeds and centers the balls via a mechanum base
+  // The motor controlling the accelerator wheel. Feeds the balls into the Turret/Shooter
   CANSparkMaxPIDWrapper Feeder;
 
   public IndexerSubsystem() {

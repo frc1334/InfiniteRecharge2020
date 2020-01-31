@@ -78,7 +78,7 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
     return Constants.kDistancePerTick * (RightEncoder.getPosition() / RightEncoder.getCountsPerRevolution());
   }
 
-  // This DifferentialDriveWheelSpeeds method returns the average wheel velocities of the left and right sides of the drivetrain as a new DifferentialDriveWheelSpeeds object. Used to simplify kinematics calculations
+  // This DifferentialDriveWheelSpeeds method returns the average wheel velocities (wheel speeds) f the left and right sides of the drivetrain as a new DifferentialDriveWheelSpeeds object. Used to simplify kinematics calculations
   public DifferentialDriveWheelSpeeds getAverageVelocity () {
     return new DifferentialDriveWheelSpeeds(LeftEncoder.getVelocity(), RightEncoder.getVelocity());
   }

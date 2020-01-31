@@ -1,9 +1,14 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------
+
+Author: Rico Zhu                                      Date: January 30th, 2020
+
+IntakeOnPath Command
+
+This Command group (Parallel Deadline) enables intaking during a given auto
+trajectory path simultaneously until the trajectory path Ramsete Command
+finishes.
+
+------------------------------------------------------------------------------*/
 
 package frc.robot.commands.auto;
 
@@ -17,9 +22,6 @@ import java.io.IOException;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class IntakeOnPath extends ParallelDeadlineGroup {
   /**
    * @throws IOException
