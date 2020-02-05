@@ -40,8 +40,8 @@ public class Robot extends TimedRobot {
   // The subsystems called used in OI
   public static DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public static TurretSubsystem TurretSubsystem = new TurretSubsystem();
-  public static LauncherSubsystem LauncherSubsystem = new LauncherSubsystem();
   public static LimelightSubsystem LimelightSubsystem = new LimelightSubsystem();
+  public static LauncherSubsystem LauncherSubsystem = new LauncherSubsystem();
   public static PneumaticsSubsytem PneumaticsSubsystem = new PneumaticsSubsytem();
   public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
   public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
@@ -124,7 +124,7 @@ public class Robot extends TimedRobot {
     // Start the CommandScheduler to add Command calls to the current running stack
     commandScheduler.run();
     DriveCommand.schedule();
-
+    
   }
 
   /**

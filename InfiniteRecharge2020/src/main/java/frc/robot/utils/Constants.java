@@ -47,7 +47,7 @@ public class Constants {
 
     // Turret positional PID tune values
     public static final double kTurretP = 4.2; // 4.2
-    public static final double kTurretI = 7.735e-8; // 7.7e-8
+    public static final double kTurretI = 7.735e-8; // 7.735e-8
     public static final double kTurretD = 0.85; // 0.85
     public static final double kTurretFF = 0.0;
 
@@ -59,7 +59,7 @@ public class Constants {
     public static final double kTurretMaxOutput = 0.6;
 
     // Turret tolerance levels
-    public static final double kTurretTolerance = 164;
+    public static final double kTurretTolerance = 124;
 
     // Launcher Subsytem Constants
 

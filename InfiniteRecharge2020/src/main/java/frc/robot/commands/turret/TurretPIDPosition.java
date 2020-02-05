@@ -32,10 +32,17 @@ public class TurretPIDPosition extends CommandBase implements Command {
     Robot.TurretSubsystem.setTurretPosition(setpoint);
   }
 
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+  }
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Robot.TurretSubsystem.inRange(setpoint)) { return true; }
+    if (Robot.TurretSubsystem.inRange(setpoint)) { 
+      return true;
+    }
     return false;
   }
 
