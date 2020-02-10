@@ -29,8 +29,7 @@ public class TurretPIDPosition extends CommandBase implements Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.TurretSubsystem.setTurretPosition(setpoint);
-  }
+    Robot.TurretSubsystem.setTurretPosition(setpoint);  }
 
   // Called once the command ends or is interrupted.
   @Override

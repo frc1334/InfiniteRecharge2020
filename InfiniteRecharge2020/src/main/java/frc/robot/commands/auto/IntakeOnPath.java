@@ -14,12 +14,9 @@ package frc.robot.commands.auto;
 
 import frc.robot.Robot;
 import frc.robot.commands.subroutines.IntakeRoutine;
-import frc.robot.utils.AutoTrajectoryPaths;
-import frc.robot.utils.AutoTrajectoryCommandGenerator;
 
 import java.io.IOException;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 
 public class IntakeOnPath extends ParallelDeadlineGroup {

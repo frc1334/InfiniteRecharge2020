@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------
 
-Author: Rico Zhu                Date: January 11th, 2019
+Author: Rico Zhu                Date: January 11th, 2020
 
 CANSparkMaxPIDWrapper Class
 
