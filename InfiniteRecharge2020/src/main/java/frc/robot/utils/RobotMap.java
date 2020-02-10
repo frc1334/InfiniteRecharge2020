@@ -34,10 +34,11 @@ public class RobotMap {
     // The channel ID for the Feeder motor on the IndexerSubsystem
     public static final int Feeder = 9;
     
-    // The channel ID for the front and back belt motor on the IndexerSubsystem
-    public static final int FrontBelt = 10;
-    public static final int BackBelt = 11;
+    // The channel ID for the belt motor on the IndexerSubsystem
+    public static final int Belt = 10;
 
+    // The channel ID for the accelerator wheel the AcceleratorWheelSubsystem
+    public static final int AcceleratorWheel = 11;
 
     // Pneumatics 
 

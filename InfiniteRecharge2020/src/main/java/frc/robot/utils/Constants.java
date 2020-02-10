@@ -87,21 +87,27 @@ public class Constants {
 
     // Vertical Feeder Subsystem Constants
 
-    // Vertical Feeder velocity PID tune values for the front and back belts
+    // Vertical Feeder velocity PID tune values for the belt
 
-    public static final double kVerticalFeederFrontP = 0.0;
-    public static final double kVerticalFeederFrontI = 0.0;
-    public static final double kVerticalFeederFrontD = 0.0;
-    public static final double kVerticalFeederFrontFF = 0.0;
-
-    public static final double kVerticalFeederBackP = 0.0;
-    public static final double kVerticalFeederBackI = 0.0;
-    public static final double kVerticalFeederBackD = 0.0;
-    public static final double kVerticalFeederBackFF = 0.0;   
+    public static final double kVerticalFeederP = 0.0;
+    public static final double kVerticalFeederI = 0.0;
+    public static final double kVerticalFeederD = 0.0;
+    public static final double kVerticalFeederFF = 0.0;
 
     // Vertical Feeder velocity output range
     public static final double kVerticalFeederMinOutput = -1;
     public static final double kVerticalFeederMaxOutput = 1;
 
+    // Accelerator Wheel Subsystem Constants
+
+    // Accelerator Wheel velocity PID tune values
+    public static final double kAcceleratorWheelP = 0.0;
+    public static final double kAcceleratorWheelI = 0.0;
+    public static final double kAcceleratorWheelD = 0.0;
+    public static final double kAcceleratorWheelFF = 0.0;
+
+    // Accelerator Wheel velocity output range
+    public static final double kAcceleratorWheelMinOutput = -1;
+    public static final double kAcceleratorWheelMaxOutput = 1;
 
 }

@@ -17,43 +17,25 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VerticalFeederSubsystem extends SubsystemBase implements Subsystem {
 
-  // The 2 motors driving the front and back belts of the vertical feeder, respectively
-  CANSparkMaxPIDWrapper FrontBelt;
-  CANSparkMaxPIDWrapper BackBelt;
+  // The motor driving the belt upwards (assumed to be NEO)
+  CANSparkMaxPIDWrapper Belt;
 
   public VerticalFeederSubsystem() {
 
     // Initialize the 2 motors on the VerticalFeederSubsystem
-    FrontBelt = new CANSparkMaxPIDWrapper(RobotMap.FrontBelt, 1);
-    BackBelt = new CANSparkMaxPIDWrapper(RobotMap.BackBelt, 1);
+    Belt = new CANSparkMaxPIDWrapper(RobotMap.Belt, 1);
+  
+    // Configure the PID control loop for the belt vertical feeder
+    Belt.setPIDValues(Constants.kVerticalFeederP, Constants.kVerticalFeederI, Constants.kVerticalFeederD, Constants.kVerticalFeederFF, 0);
 
-    // Configure 2 seperate PID control loops for the front and back sides of the belt vertical feeder
-    FrontBelt.setPIDValues(Constants.kVerticalFeederFrontP, Constants.kVerticalFeederFrontI, Constants.kVerticalFeederFrontD, Constants.kVerticalFeederFrontFF, 0);
-    BackBelt.setPIDValues(Constants.kVerticalFeederBackP, Constants.kVerticalFeederBackI, Constants.kVerticalFeederBackD, Constants.kVerticalFeederBackFF, 0);
-
-    // Configure the peak output voltages for the front and back belt motors
-    FrontBelt.setPIDOutputRange(Constants.kVerticalFeederMinOutput, Constants.kVerticalFeederMaxOutput);
-    BackBelt.setPIDOutputRange(Constants.kVerticalFeederMinOutput, Constants.kVerticalFeederMaxOutput);
-
+    // Configure the peak output voltages for the belt motor
+    Belt.setPIDOutputRange(Constants.kVerticalFeederMinOutput, Constants.kVerticalFeederMaxOutput);
+  
   }
 
-  // This void method would set a PID Velocity target for the FrontBelt motor
-  public void setFrontBeltVelocity (double setpoint) {
-    FrontBelt.setPIDVelocity(setpoint);
-  }
-
-  // This void method would set a PID Velocity target for the BackBelt motor
-  public void setBackBeltVelocity (double setpoint) {
-    BackBelt.setPIDVelocity(setpoint);
-  }
-
-  // This void method acts as an injection point for running both the front and back belts in opposite directions
+  // This void method would set a PID Velocity target for the Belt motor
   public void setVerticalFeederVelocity (double setpoint) {
-
-    // Set both belts of the Vertical Feeder (front and back) in opposite directinos (to transport balls in one direction)
-    setFrontBeltVelocity(setpoint);
-    setBackBeltVelocity(-setpoint);
-
+    Belt.setPIDVelocity(setpoint);
   }
 
 }

@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.verticalfeeder;
+package frc.robot.commands.acceleratorwheel;
 
 import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class VerticalFeederVelocityPID extends CommandBase implements Command {
-
+public class AcceleratorWheelPIDVelocity extends CommandBase implements Command {
+  
   double velocity;
 
-  public VerticalFeederVelocityPID(double velocity) {
+  public AcceleratorWheelPIDVelocity (double velocity) {
     this.velocity = velocity;
     addRequirements(Robot.VerticalFeederSubsystem);
   }
@@ -29,7 +29,7 @@ public class VerticalFeederVelocityPID extends CommandBase implements Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.VerticalFeederSubsystem.setVerticalFeederVelocity(velocity);
+    Robot.AcceleratorWheelSubsystem.setAcceleratorWheelVelocity(velocity);
   }
 
   // Called once the command ends or is interrupted.
@@ -42,5 +42,5 @@ public class VerticalFeederVelocityPID extends CommandBase implements Command {
   public boolean isFinished() {
     return false;
   }
-  
+
 }
