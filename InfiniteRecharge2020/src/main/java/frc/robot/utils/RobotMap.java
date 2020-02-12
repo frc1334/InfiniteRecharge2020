@@ -44,6 +44,13 @@ public class RobotMap {
     public static final int ClimbLeft = 1;
     public static final int ClimbRight = 2;
 
+    // Digital Input Output (DIO on RoboRio for sensors)
+
+    // The channel ID for the 3 beam break sensors
+    public static final int IndexerBB = 0;
+    public static final int VerticalFeederBB = 1;
+    public static final int AcceleratorWheelBB = 2;
+
     // Pneumatics 
 
     // The channel ID for the Compressor on the PCM (Pneumatics Control Module)

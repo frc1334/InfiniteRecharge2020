@@ -19,6 +19,7 @@ package frc.robot.subsystems;
 import frc.robot.utils.RobotMap;
 import frc.robot.utils.Constants;
 import frc.robot.utils.CANSparkMaxPIDWrapper;
+
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -35,7 +36,7 @@ public class TurretSubsystem extends SubsystemBase implements Subsystem {
 
     // Set the PID tune parameters and positional conversion factor
     Turret.setPIDValues(Constants.kTurretP, Constants.kTurretI,
-     Constants.kTurretD, Constants.kTurretFF, Constants.kTurretPositionalConversionFactor);
+        Constants.kTurretD, Constants.kTurretFF, Constants.kTurretPositionalConversionFactor);
 
     // Set the output range (from -1 to 1) on the Turret
     Turret.setPIDOutputRange(Constants.kTurretMinOutput, Constants.kTurretMaxOutput);
