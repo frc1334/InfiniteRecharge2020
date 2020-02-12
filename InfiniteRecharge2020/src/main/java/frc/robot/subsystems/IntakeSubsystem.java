@@ -18,19 +18,19 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class IntakeSubsystem extends SubsystemBase implements Subsystem {
 
   // A new TalonSRX Motor Controller object to control the intake 775 motor
-  TalonSRX Intake;
+  VictorSPX Intake;
   // Double solenoids for the actuation of the intake feed in and out positions
   DoubleSolenoid IntakeLeft;
   DoubleSolenoid IntakeRight;
 
   public IntakeSubsystem() {
     // Instantiate new type of TalonSRX for the Intake
-    Intake = new TalonSRX(RobotMap.Intake);
+    Intake = new VictorSPX(RobotMap.Intake);
     // Instantiate the 2 new double solenoids for the Intake pistons, one on the left and one on the right
     IntakeLeft = new DoubleSolenoid(RobotMap.IntakeLeft1, RobotMap.IntakeLeft2);
     IntakeRight = new DoubleSolenoid(RobotMap.IntakeRight1, RobotMap.IntakeRight2);

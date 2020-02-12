@@ -73,31 +73,6 @@ public class Constants {
     public static final double kLauncherMinOutput = -1;
     public static final double kLauncherMaxOutput = 1;
 
-    // Indexer Subsystem Constants
-
-    // Indexer velocity PID tune values
-    public static final double kIndexerP = 0.0;
-    public static final double kIndexerI = 0.0;
-    public static final double kIndexerD = 0.0;
-    public static final double kIndexerFF = 0.0;
-
-    // Indexer velocity output range
-    public static final double kIndexerMinOutput = -1;
-    public static final double kIndexerMaxOutput = 1;
-
-    // Vertical Feeder Subsystem Constants
-
-    // Vertical Feeder velocity PID tune values for the belt
-
-    public static final double kVerticalFeederP = 0.0;
-    public static final double kVerticalFeederI = 0.0;
-    public static final double kVerticalFeederD = 0.0;
-    public static final double kVerticalFeederFF = 0.0;
-
-    // Vertical Feeder velocity output range
-    public static final double kVerticalFeederMinOutput = -1;
-    public static final double kVerticalFeederMaxOutput = 1;
-
     // Accelerator Wheel Subsystem Constants
 
     // Accelerator Wheel velocity PID tune values

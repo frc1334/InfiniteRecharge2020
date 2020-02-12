@@ -9,33 +9,26 @@ IndexerSubsystem Class
 package frc.robot.subsystems;
 
 import frc.robot.utils.RobotMap;
-import frc.robot.utils.Constants;
-import frc.robot.utils.CANSparkMaxPIDWrapper;
 
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 public class IndexerSubsystem extends SubsystemBase implements Subsystem {
 
   // The motor controlling the accelerator wheel. Feeds the balls into the Turret/Shooter
-  CANSparkMaxPIDWrapper Feeder;
+  VictorSPX Feeder;
 
   public IndexerSubsystem() {
-
     // Initialize the feeder motor on the IndexerSubsystem
-    Feeder = new CANSparkMaxPIDWrapper(RobotMap.Feeder, 1);
-
-    // Configure the PID tuning values for the feeder
-    Feeder.setPIDValues(Constants.kIndexerP, Constants.kIndexerI, Constants.kIndexerD, Constants.kIndexerFF, 0);
-
-    // Configure the peak output ranges for the feeder
-    Feeder.setPIDOutputRange(Constants.kIndexerMinOutput, Constants.kIndexerMaxOutput);
-
+    Feeder = new VictorSPX(RobotMap.Feeder);
   }
 
-  // This void method will set a velocity PID target to the Feeder motor
-  public void setIndexerVelocity (double setpoint) {
-    Feeder.setPIDVelocity(setpoint);
+  // This void method will set a voltage target to the Feeder motor
+  public void setIndexerVoltage (double voltage) {
+    Feeder.set(ControlMode.PercentOutput, voltage);
   }
 
 }

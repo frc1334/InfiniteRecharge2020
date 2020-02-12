@@ -40,6 +40,10 @@ public class RobotMap {
     // The channel ID for the accelerator wheel the AcceleratorWheelSubsystem
     public static final int AcceleratorWheel = 11;
 
+    // The channel IDs for the 2 climber TalonFXs
+    public static final int ClimbLeft = 1;
+    public static final int ClimbRight = 2;
+
     // Pneumatics 
 
     // The channel ID for the Compressor on the PCM (Pneumatics Control Module)
