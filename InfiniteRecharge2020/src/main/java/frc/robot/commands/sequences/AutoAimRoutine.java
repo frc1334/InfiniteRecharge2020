@@ -11,7 +11,7 @@ are finished.
 
 ------------------------------------------------------------------------------*/
 
-package frc.robot.commands.subroutines;
+package frc.robot.commands.sequences;
 
 import frc.robot.commands.launcher.LauncherPIDVelocity;
 import frc.robot.commands.turret.TurretAutoTracking;
