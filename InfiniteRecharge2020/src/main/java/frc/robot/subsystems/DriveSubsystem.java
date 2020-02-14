@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import frc.robot.utils.RobotMap;
 import frc.robot.utils.Constants;
 
+import com.revrobotics.AlternateEncoderType;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -57,6 +58,9 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   // Gear shift DoubleSolenoid
   DoubleSolenoid gearShift = new DoubleSolenoid(RobotMap.GearShiftLow, RobotMap.GearShiftHigh);
 
+  // The GearShift toggle boolean
+  boolean GearShiftToggle = false;
+
   public DriveSubsystem() {
 
     // Enable follower on the 2 follower CANSpark Maxs
@@ -67,13 +71,13 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
     Left1.setInverted(false);
     Right1.setInverted(true);
 
+    // Initialize the encoders (alternate REV through bore encoders with a resolution/Counts per Revolution/CPR of 8192)
+    LeftEncoder = Left1.getAlternateEncoder(AlternateEncoderType.kQuadrature, Constants.kAltEndoerCPR);
+    RightEncoder = Right1.getAlternateEncoder(AlternateEncoderType.kQuadrature, Constants.kAltEndoerCPR);
+
     // Reset the encoders to start at position 0
     LeftEncoder.setPosition(0);
     RightEncoder.setPosition(0);
-
-    // Initialize the encoders
-    LeftEncoder = Left1.getEncoder();
-    RightEncoder = Right1.getEncoder();
 
     // Initialize the gyro
     try {
@@ -153,10 +157,12 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   public void toggleGearShift () {
 
     // Read the current value of the gear shift; reverse it
-    if (gearShift.get().equals(Value.kForward)) {
+    if (GearShiftToggle) {
       gearShift.set(Value.kReverse);
-    } else if (gearShift.get().equals(Value.kReverse)) {
+      GearShiftToggle = !GearShiftToggle;
+    } else if (!GearShiftToggle) {
       gearShift.set(Value.kForward);
+      GearShiftToggle = !GearShiftToggle;
     }
 
   }

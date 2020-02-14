@@ -25,6 +25,9 @@ public class Constants {
     // This defines the conversion factor from encoder ticks to meters for both sides of the drivetrain
     public static final double kDistancePerTick = 1.0;
 
+    // This defines the resolution of the drive Alternate Encoders
+    public static final int kAltEndoerCPR = 8192;
+
     // This defines the voltage constraints for the drivetrain
     public static final double ksVolts = 0.0;
     public static final double kvVoltSecondsPerMeter = 0.0;
