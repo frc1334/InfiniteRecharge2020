@@ -17,6 +17,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -40,17 +42,20 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   SpeedControllerGroup RightControllerGroup = new SpeedControllerGroup(Right1, Right2);
 
   // The left and right side encoders (configured on SparkMax to be alternative encoder on Brushless mode)
-  CANEncoder LeftEncoder = Left1.getEncoder();
-  CANEncoder RightEncoder = Right1.getEncoder();
+  CANEncoder LeftEncoder;
+  CANEncoder RightEncoder;
   
   // The NavX-MXP Gyroscope (Kuailabs)
-  AHRS Gyro = new AHRS(SPI.Port.kMXP);
+  AHRS Gyro;
 
   // The differential drivetrain (Tank/West Coast) used on bot. Used for auto calculations
   DifferentialDrive DifferentialDriveTrain = new DifferentialDrive(LeftControllerGroup, RightControllerGroup);
 
   // The Odometry module (for calculating 2D positions) of the robot
   DifferentialDriveOdometry Odometry;
+
+  // Gear shift DoubleSolenoid
+  DoubleSolenoid gearShift = new DoubleSolenoid(RobotMap.GearShiftLow, RobotMap.GearShiftHigh);
 
   public DriveSubsystem() {
 
@@ -65,6 +70,17 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
     // Reset the encoders to start at position 0
     LeftEncoder.setPosition(0);
     RightEncoder.setPosition(0);
+
+    // Initialize the encoders
+    LeftEncoder = Left1.getEncoder();
+    RightEncoder = Right1.getEncoder();
+
+    // Initialize the gyro
+    try {
+      Gyro = new AHRS(SPI.Port.kMXP);
+		} catch (RuntimeException ex) {
+			System.out.println("Error instantiating NavX-MXP");
+		}
 
   }
 
@@ -109,8 +125,8 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   public void TankDrive (double left, double right) {
 
     // Multiply the left and right voltage factors to limit it to 70%
-    left *= 0.7;
-    right *= 0.7;
+    left *= 0.75;
+    right *= 0.75;
 
     // Set the left CANSparkMaxs to the left side drivetrain value
     Left1.set(left);
@@ -131,6 +147,18 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   public void periodic () {
     // Update the odometry module periodically with new positional values from the encoders and the gyro
     Odometry.update(Rotation2d.fromDegrees(getGyroAngleHeading()), getLeftDistance(), getRightDistance());
+  }
+
+  // This void method toggles the gear shift
+  public void toggleGearShift () {
+
+    // Read the current value of the gear shift; reverse it
+    if (gearShift.get().equals(Value.kForward)) {
+      gearShift.set(Value.kReverse);
+    } else if (gearShift.get().equals(Value.kReverse)) {
+      gearShift.set(Value.kForward);
+    }
+
   }
 
 }

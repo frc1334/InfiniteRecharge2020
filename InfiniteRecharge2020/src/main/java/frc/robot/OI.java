@@ -16,6 +16,7 @@ package frc.robot;
 
 import frc.robot.commands.subroutines.IntakeRoutine;
 import frc.robot.commands.turret.TurretPIDPosition;
+import frc.robot.commands.drive.GearShift;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -48,8 +49,8 @@ public class OI {
         OperatorXButton = new JoystickButton(Operator, 3);
         OperatorYButton = new JoystickButton(Operator, 4);
 
-        DriverAButton.whenPressed(new TurretPIDPosition(42000));
-        OperatorAButton.whileHeld(new IntakeRoutine());
+        DriverAButton.whenPressed(new GearShift());
+        //OperatorAButton.whileHeld(new IntakeRoutine());
     
     }
 

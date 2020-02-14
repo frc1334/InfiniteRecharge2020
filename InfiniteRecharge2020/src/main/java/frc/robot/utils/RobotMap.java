@@ -62,4 +62,8 @@ public class RobotMap {
     public static final int IntakeRight1 = 3;
     public static final int IntakeRight2 = 4;
 
+    // The channel ID for te gear shifter DoubleSolenoid
+    public static final int GearShiftLow = 0;
+    public static final int GearShiftHigh = 1;
+
 }

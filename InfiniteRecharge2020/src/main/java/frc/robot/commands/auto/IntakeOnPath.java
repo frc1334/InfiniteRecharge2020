@@ -26,7 +26,7 @@ public class IntakeOnPath extends ParallelDeadlineGroup {
   public IntakeOnPath(String filepath) throws IOException {
     // Add your commands in the super() call.  Add the deadline first.
     super(
-        Robot.AutoTrajectoryGenerator.generateCommand(filepath),
+        //Robot.AutoTrajectoryGenerator.generateCommand(filepath),
         new IntakeRoutine()
     );
   }
