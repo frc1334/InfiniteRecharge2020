@@ -8,18 +8,13 @@
 package frc.robot.commands.turret;
 
 import frc.robot.Robot;
+import frc.robot.utils.Constants;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurretAutoTracking extends CommandBase {
 
   double trackPoint = 0.0;
-
-  // The motor ticks for a 270 degree rotation on the main turret
-  double Turret270SparkTicks = 97230.625;
-  // The emprical values for  a 270 degree rotation on the Turret encoder value multiplied by (4/3)
-  double Turret360SparkTicks = Turret270SparkTicks * (4.0/3.0);
-  // The number of ticks on the TurretMotor 
-  double TurretTicksPerDegree = Turret360SparkTicks / 360.0;
 
   public TurretAutoTracking() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -41,7 +36,7 @@ public class TurretAutoTracking extends CommandBase {
     double xDisplacement = Robot.LimelightSubsystem.getXDisplacement();
 
     // Increment / Decrement the tradk point 64
-    trackPoint += (xDisplacement) * TurretTicksPerDegree;
+    trackPoint += (xDisplacement) * Constants.TurretTicksPerDegree;
 
     Robot.TurretSubsystem.setTurretPosition(trackPoint);
     

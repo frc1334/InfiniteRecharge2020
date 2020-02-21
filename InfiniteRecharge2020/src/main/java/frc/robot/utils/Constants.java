@@ -20,6 +20,15 @@ public class Constants {
     public static final int kVelocityMode = 1;
     public static final int kSmartMotionMode = 2;
 
+    // Turret Conversion Constants
+    
+    // The motor ticks for a 270 degree rotation on the main turret
+    public static final double Turret270SparkTicks = 97230.625;
+    // The emprical values for  a 270 degree rotation on the Turret encoder value multiplied by (4/3)
+    public static final double Turret360SparkTicks = Turret270SparkTicks * (4.0/3.0);
+    // The number of ticks on the TurretMotor 
+    public static final double TurretTicksPerDegree = Turret360SparkTicks / 360.0;
+
     // Drive Subsystem Constants
     
     // This defines the conversion factor from encoder ticks to meters for both sides of the drivetrain

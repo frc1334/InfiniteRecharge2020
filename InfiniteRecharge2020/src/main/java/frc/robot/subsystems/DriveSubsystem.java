@@ -72,8 +72,8 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
     Right1.setInverted(true);
 
     // Initialize the encoders (alternate REV through bore encoders with a resolution/Counts per Revolution/CPR of 8192)
-    LeftEncoder = Left1.getAlternateEncoder(AlternateEncoderType.kQuadrature, Constants.kAltEndoerCPR);
-    RightEncoder = Right1.getAlternateEncoder(AlternateEncoderType.kQuadrature, Constants.kAltEndoerCPR);
+    LeftEncoder = Left1.getEncoder();
+    RightEncoder = Right1.getEncoder();
 
     // Reset the encoders to start at position 0
     LeftEncoder.setPosition(0);
