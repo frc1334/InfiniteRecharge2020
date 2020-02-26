@@ -8,6 +8,7 @@
 package frc.robot;
 
 import frc.robot.subsystems.AcceleratorWheelSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot {
   public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
   public static VerticalFeederSubsystem VerticalFeederSubsystem = new VerticalFeederSubsystem();
   public static AcceleratorWheelSubsystem AcceleratorWheelSubsystem = new AcceleratorWheelSubsystem();
+  public static ClimberSubsystem ClimberSubsystem = new ClimberSubsystem();
 
   // Initialize a new Operator Interface (OI) object
   public static OI OI = new OI();
