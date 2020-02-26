@@ -60,6 +60,9 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   // The GearShift toggle boolean
   boolean GearShiftToggle = false;
 
+  // The boolean variable for toggling the climber mode (50% slower)
+  public boolean climbMode = false;
+
   public DriveSubsystem() {
 
     // Enable follower on the 2 follower CANSpark Maxs
