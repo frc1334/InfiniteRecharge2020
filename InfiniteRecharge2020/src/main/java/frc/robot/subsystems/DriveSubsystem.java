@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import frc.robot.utils.RobotMap;
 import frc.robot.utils.Constants;
 
-import com.revrobotics.AlternateEncoderType;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -128,6 +127,15 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   // This void method would enable Tank Drive on the 4 Spark Maxs by applying the parameter left and right percent power values. This is called by Arcade Drive
   public void TankDrive (double left, double right) {
 
+    // Apply a cubic transformation to both the left and right voltage output if it is less than half. This is used for more precise slow speed turning and drive
+    if (left <= 0.5) {
+      left = cubicTransformation(left);
+    }
+
+    if (right <= 0.5) {
+      right = cubicTransformation(right);
+    }
+
     // Multiply the left and right voltage factors to limit it to 70%
     left *= 0.75;
     right *= 0.75;
@@ -165,6 +173,11 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
       GearShiftToggle = !GearShiftToggle;
     }
 
+  }
+
+  // This double function takes in a output value and returns the functional output value for it through a cubic function
+  public double cubicTransformation (double x) {
+    return (x * 4 * (Math.pow(x, 2)));
   }
 
 }

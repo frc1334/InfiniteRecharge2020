@@ -11,19 +11,20 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 public class ClimberSubsystem extends SubsystemBase implements Subsystem {
 
   // The Falcon500 (TalonFX) motors used for the climber
-  TalonFX ClimbRight = new TalonFX(RobotMap.ClimbRight);
-  TalonFX ClimbLeft = new TalonFX(RobotMap.ClimbLeft);
+  TalonFX ClimbUp = new TalonFX(RobotMap.ClimbUp);
+  TalonFX ClimbDown = new TalonFX(RobotMap.ClimbDown);
 
   public ClimberSubsystem() {
-    // Invert the 2 Falcons so that they don't run against each other
-    ClimbLeft.setInverted(false);
-    ClimbRight.setInverted(true);
   }
 
-  // This void method sets the percentage output voltage of the 2 Falcons
-  public void setClimberVoltage (double voltage) {
-    ClimbLeft.set(ControlMode.PercentOutput, voltage);
-    ClimbRight.set(ControlMode.PercentOutput, voltage);
+  // This void method sets the percentage output voltage of the ClimbUp Falcon to 100% for a 0.2 second climb
+  public void setClimberUp () {
+    ClimbUp.set(ControlMode.PercentOutput, 1.0);
+  }
+
+  // This void method sets the percentage output voltage of the ClimbUp Falcon to 100% for a 0.2 second climb
+  public void setClimberDown () {
+   ClimbDown.set(ControlMode.PercentOutput, 1.0);
   }
 
 }

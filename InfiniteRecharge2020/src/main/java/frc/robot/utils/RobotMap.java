@@ -41,8 +41,8 @@ public class RobotMap {
     public static final int AcceleratorWheel = 11;
 
     // The channel IDs for the 2 climber TalonFXs
-    public static final int ClimbLeft = 1;
-    public static final int ClimbRight = 2;
+    public static final int ClimbUp = 12;
+    public static final int ClimbDown = 13;
 
     // Digital Input Output (DIO on RoboRio for sensors)
 
