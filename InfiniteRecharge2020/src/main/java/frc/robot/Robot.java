@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
   public static OI OI = new OI();
 
   // Initialize a new AutoTrajectoryCommandGenerator for global use
-  //public static AutoTrajectoryCommandGenerator AutoTrajectoryGenerator = new AutoTrajectoryCommandGenerator();
+  public static AutoTrajectoryCommandGenerator AutoTrajectoryGenerator = new AutoTrajectoryCommandGenerator();
 
   // Initialize the commands
   DriveCommand DriveCommand = new DriveCommand();
