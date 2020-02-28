@@ -17,7 +17,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.PneumaticsSubsytem;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.subsystems.VerticalFeederSubsystem;
-import frc.robot.utils.AutoTrajectoryCommandGenerator;
+//import frc.robot.utils.AutoTrajectoryCommandGenerator;
 import frc.robot.commands.drive.DriveCommand;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -44,9 +44,9 @@ public class Robot extends TimedRobot {
   public static TurretSubsystem TurretSubsystem = new TurretSubsystem();
   public static LimelightSubsystem LimelightSubsystem = new LimelightSubsystem();
   public static LauncherSubsystem LauncherSubsystem = new LauncherSubsystem();
-  public static PneumaticsSubsytem PneumaticsSubsystem = new PneumaticsSubsytem();
+  //public static PneumaticsSubsytem PneumaticsSubsystem = new PneumaticsSubsytem();
   public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
-  public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
+  // public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
   public static VerticalFeederSubsystem VerticalFeederSubsystem = new VerticalFeederSubsystem();
   public static AcceleratorWheelSubsystem AcceleratorWheelSubsystem = new AcceleratorWheelSubsystem();
   public static ClimberSubsystem ClimberSubsystem = new ClimberSubsystem();
@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
   public static OI OI = new OI();
 
   // Initialize a new AutoTrajectoryCommandGenerator for global use
-  public static AutoTrajectoryCommandGenerator AutoTrajectoryGenerator = new AutoTrajectoryCommandGenerator();
+  //public static AutoTrajectoryCommandGenerator AutoTrajectoryGenerator = new AutoTrajectoryCommandGenerator();
 
   // Initialize the commands
   DriveCommand DriveCommand = new DriveCommand();

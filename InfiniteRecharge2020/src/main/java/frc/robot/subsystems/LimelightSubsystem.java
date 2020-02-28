@@ -30,6 +30,9 @@ public class LimelightSubsystem extends SubsystemBase {
   double yDisplacement;
   double targetArea;
 
+  // This boolean variable determines which camera mode the limelight should be on. True means turret tracking, false means regular camera
+  boolean toggle = false;
+
   public LimelightSubsystem() {
 
     // Initialize the NetworkTable for the limelight
@@ -39,6 +42,13 @@ public class LimelightSubsystem extends SubsystemBase {
     tx = Table.getEntry("tx");
     ty = Table.getEntry("ty");
     ta = Table.getEntry("ta");
+
+    // Set the default camera mode
+    if (!toggle) {
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
+    } else {
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
+    }
 
   }
 
@@ -52,17 +62,49 @@ public class LimelightSubsystem extends SubsystemBase {
 
   // This is a double getter method for retrieving the horizontal angle displacement
   public double getXDisplacement() {
+    xDisplacement = tx.getDouble(0.0);
     return xDisplacement;
   }
 
   // This is a double getter method for retrieving the vertical angle displacement
   public double getYDisplacement() {
+    yDisplacement = ty.getDouble(0.0);
     return yDisplacement;
   }
 
   // This is a double getter method for retrieving the target area
   public double getTargetArea() {
+    targetArea = ta.getDouble(0.0);
     return targetArea;
+  }
+
+  // This void method enables the regular camera mode
+  public void enableRegCamMode () {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
+    // Update toggle to the correct mode; used for enabling instant toggle afterwards
+    toggle = false;
+  }
+
+  // This void method enables the turret tracking camera mode
+  public void enableTurretTrackCamMode () {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
+    // Update toggle to the correct mode; used for enabling instant toggle afterwards
+    toggle = true;
+  }
+
+  // This void method toggles the camera modes between regular camera to turret tracking mode
+  public void toggleCameraMode () {
+
+    // Swap the camera modes by toggling the toggle boolean variable
+    toggle = !toggle;
+
+    // Update the camera mode
+    if (!toggle) {
+      enableRegCamMode();
+    } else {
+      enableTurretTrackCamMode();
+    }
+
   }
 
 }

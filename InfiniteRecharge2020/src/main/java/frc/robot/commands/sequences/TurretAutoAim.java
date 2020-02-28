@@ -7,22 +7,21 @@
 
 package frc.robot.commands.sequences;
 
-import frc.robot.commands.climber.ClimbUpPosition;
-import frc.robot.commands.climber.ToggleClimbMode;
-
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.limelight.ActivateTurretTracking;
+import frc.robot.commands.limelight.ToggleCameraMode;
+import frc.robot.commands.turret.TurretAutoTracking;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ClimbUpSequence extends ParallelCommandGroup {
+public class TurretAutoAim extends SequentialCommandGroup {
   /**
-   * Creates a new ClimbUpSequence.
+   * Creates a new TurretAutoAim.
    */
-  public ClimbUpSequence() {
+  public TurretAutoAim() {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());super();
-    super(new ToggleClimbMode(), new ClimbUpPosition(36000));
+    // super(new FooCommand(), new BarCommand());
+    super(new ActivateTurretTracking(), new TurretAutoTracking());
   }
-
 }

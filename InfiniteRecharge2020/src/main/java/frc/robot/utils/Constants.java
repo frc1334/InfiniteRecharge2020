@@ -100,7 +100,7 @@ public class Constants {
     // Climber PID tune values
 
     // ClimberUp
-    public static final double kClimberUpP = 0.0;
+    public static final double kClimberUpP = 1.2;
     public static final double kClimberUpI = 0.0;
     public static final double kClimberUpD = 0.0;
     public static final double kClimberUpFF = 0.0;
@@ -112,15 +112,15 @@ public class Constants {
     public static final double kClimberDownFF = 0.0;
 
     // ClimberUp PID Position Output range
-    public static final double kClimberUpMinOutput = -1;
-    public static final double kClimberUpMaxOutput = 1;
+    public static final double kClimberUpMinOutput = -0.35;
+    public static final double kClimberUpMaxOutput = 0.35;
 
     // ClimberDown PID Position Output range
     public static final double kClimberDownMinOutput = -1;
     public static final double kClimberDownMaxOutput = 1;
 
     // Climber PID Tolerance
-    public static final double kClimbUpTolerance = 0.0;
-    public static final double kClimbDownTolerance = 0.0;
+    public static final double kClimbUpTolerance = 200.0;
+    public static final double kClimbDownTolerance = 200.0;
 
 }

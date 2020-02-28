@@ -5,24 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.sequences;
+package frc.robot.commands.limelight;
 
-import frc.robot.commands.climber.ClimbUpPosition;
-import frc.robot.commands.climber.ToggleClimbMode;
+import frc.robot.Robot;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ClimbUpSequence extends ParallelCommandGroup {
-  /**
-   * Creates a new ClimbUpSequence.
-   */
-  public ClimbUpSequence() {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());super();
-    super(new ToggleClimbMode(), new ClimbUpPosition(36000));
+public class ToggleCameraMode extends InstantCommand {
+  public ToggleCameraMode() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.LimelightSubsystem);
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    // Toggle the camera mode
+    Robot.LimelightSubsystem.toggleCameraMode();
   }
 
 }

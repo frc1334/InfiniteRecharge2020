@@ -15,9 +15,15 @@ controller data (e.g., DriveSubsystem drive operations)
 package frc.robot;
 
 import frc.robot.commands.subroutines.IntakeRoutine;
+import frc.robot.commands.turret.FieldRelativeTurretPosition;
 import frc.robot.commands.turret.TurretPIDPosition;
+import frc.robot.commands.climber.ClimbPercentDown;
+import frc.robot.commands.climber.ClimbUpPosition;
 import frc.robot.commands.drive.GearShift;
-
+import frc.robot.commands.intake.ToggleIntakeDropdown;
+import frc.robot.commands.limelight.ToggleCameraMode;
+import frc.robot.commands.sequences.ClimbUpSequence;
+import frc.robot.commands.sequences.TurretAutoAim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -30,18 +36,25 @@ public class OI {
     public XboxController Operator = new XboxController(1);
 
     // Driver Inidividual Controller Devices
-    public JoystickButton  DriverAButton;
+    public JoystickButton DriverAButton;
+    public JoystickButton DriverBButton;
+    public JoystickButton DriverXButton;
+    public JoystickButton DriverYButton;
+    
     // Operator Individual Controller Devices
-    public JoystickButton  OperatorAButton;
-    public JoystickButton  OperatorBButton;
-    public JoystickButton  OperatorXButton;
-    public JoystickButton  OperatorYButton;
+    public JoystickButton OperatorAButton;
+    public JoystickButton OperatorBButton;
+    public JoystickButton OperatorXButton;
+    public JoystickButton OperatorYButton;
 
     // Default constructor which initializes and maps the controls (initialized above, e.g., OperatorAButton) to the correct ports on the XBox controller and the right command
     public OI () {
 
         // Inititalize the Driver Controls
         DriverAButton = new JoystickButton(Driver, 1);
+        DriverBButton = new JoystickButton(Driver, 2);
+        DriverXButton = new JoystickButton(Driver, 3);
+        DriverYButton = new JoystickButton(Driver, 4);
 
         // Inititalize the Operator Controls
         OperatorAButton = new JoystickButton(Operator, 1);
@@ -49,8 +62,15 @@ public class OI {
         OperatorXButton = new JoystickButton(Operator, 3);
         OperatorYButton = new JoystickButton(Operator, 4);
 
-        DriverAButton.whenPressed(new GearShift());
-        //OperatorAButton.whileHeld(new IntakeRoutine());
+        //DriverAButton.whenPressed(new GearShift());
+        DriverBButton.whenPressed(new TurretAutoAim());
+        //DriverBButton.whenPressed(new FieldRelativeTurretPosition());
+        //DriverXButton.whenPressed(new ClimbUpSequence());
+        //DriverYButton.whileHeld(new ClimbPercentDown());
+
+        // DriverAButton.whileHeld(new IntakeRoutine());
+        // DriverAButton.whenPressed(new ClimbUpPosition(24000.0));
+        DriverAButton.whenPressed(new ToggleCameraMode());
     
     }
 

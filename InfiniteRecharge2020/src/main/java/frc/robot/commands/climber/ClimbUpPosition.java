@@ -20,6 +20,7 @@ public class ClimbUpPosition extends CommandBase implements Command {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.ClimberSubsystem);
     this.setpoint = setpoint;
+    System.out.println("CLIMB");
   }
 
   // Called when the command is initially scheduled.
@@ -31,6 +32,7 @@ public class ClimbUpPosition extends CommandBase implements Command {
   @Override
   public void execute() {
     Robot.ClimberSubsystem.setClimberUpPosition(setpoint);
+    System.out.println(Robot.ClimberSubsystem.getClimbUpPosition());
   }
 
   // Called once the command ends or is interrupted.
@@ -49,4 +51,5 @@ public class ClimbUpPosition extends CommandBase implements Command {
     return false;
 
   }
+  
 }

@@ -5,40 +5,38 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.subroutines;
+package frc.robot.commands.climber;
 
 import frc.robot.Robot;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class IntakeRoutine extends CommandBase {
-
-  public IntakeRoutine() {
-    // Attach the Intake and the Indexer subsystems as requirements
-    addRequirements(Robot.IntakeSubsystem);
-    //addRequirements(Robot.IndexerSubsystem);
+public class ClimbPercentDown extends CommandBase implements Command {
+  /**
+   * Creates a new ClimbPercentDown.
+   */
+  public ClimbPercentDown() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.ClimberSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // Deploy the intake as soon as it is activated
-    Robot.IntakeSubsystem.deployIntake(true);
+    Robot.ClimberSubsystem.stopClimbUp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //Robot.IndexerSubsystem.setIndexerVoltage(0.6);
-    Robot.IntakeSubsystem.setPercentOutputIntake(0.5);
+    Robot.ClimberSubsystem.setClimberDownPercent();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // Retract the intake as soon as the intake routine call is ended
-    Robot.IntakeSubsystem.deployIntake(false);
-    Robot.IntakeSubsystem.setPercentOutputIntake(0.0);
+    Robot.ClimberSubsystem.stopClimbDown();
   }
 
   // Returns true when the command should end.
@@ -46,5 +44,4 @@ public class IntakeRoutine extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-  
 }

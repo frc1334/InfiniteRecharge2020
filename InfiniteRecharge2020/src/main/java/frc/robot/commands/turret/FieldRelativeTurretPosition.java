@@ -46,15 +46,19 @@ public class FieldRelativeTurretPosition extends CommandBase implements Command 
     */
 
     // Retrieve the current robot/drivetrain angle (i.e., where the robot/drivetrain is facing)
-    double dtAngle = Robot.DriveSubsystem.getGyroAngleHeading();
+    double dtAngle = Robot.DriveSubsystem.getGyroAngleHeading() - 45;
     // Retrieve the current Turret position and calculate the angle from -180 --> +180 from that
-    double turretAngle = (Robot.TurretSubsystem.getTurretPosition()) / (Constants.TurretTicksPerDegree);
+    //double turretAngle = (Robot.TurretSubsystem.getTurretPosition()) / (Constants.TurretTicksPerDegree);
+    double turretAngle = (Robot.TurretSubsystem.getTurretPosition()) / (64);
 
     // Find the sum of the angles to determine the relative field position of the Turret in terms of angle degrees
     double frTurretAngle = dtAngle + turretAngle;
 
     // Find the movement requirement of the angle of the Turret (Difference from field relative target angle of 0.0 to the current angle)
     double angleDifference = 0.0 - frTurretAngle;
+
+    System.out.println("frTurretAngle: " + frTurretAngle);
+    System.out.println("angleDifference:" + angleDifference);
 
     // Update setpoint (normal to the target)
     setpoint = Robot.TurretSubsystem.getTurretPosition() + (angleDifference * (Constants.TurretTicksPerDegree));
@@ -70,6 +74,7 @@ public class FieldRelativeTurretPosition extends CommandBase implements Command 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //Robot.TurretSubsystem.turretPercentOutput(0.0);
   }
 
   // Returns true when the command should end.

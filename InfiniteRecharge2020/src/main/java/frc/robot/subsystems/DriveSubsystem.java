@@ -71,7 +71,7 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
 
     // Invert one side of the drivetrain
     Left1.setInverted(false);
-    Right1.setInverted(true);
+    Right1.setInverted(false);
 
     // Initialize the encoders (alternate REV through bore encoders with a resolution/Counts per Revolution/CPR of 8192)
     LeftEncoder = Left1.getEncoder();
@@ -86,7 +86,10 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
       Gyro = new AHRS(SPI.Port.kMXP);
 		} catch (RuntimeException ex) {
 			System.out.println("Error instantiating NavX-MXP");
-		}
+    }
+    
+    // Initialize the drive Odometry object
+    Odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngleHeading()));
 
   }
 
@@ -131,12 +134,17 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
   public void TankDrive (double left, double right) {
 
     // Apply a cubic transformation to both the left and right voltage output if it is less than half. This is used for more precise slow speed turning and drive
-    if (left <= 0.5) {
-      left = cubicTransformation(left);
-    }
+    // if (left <= 0.5) {
+    //   left = cubicTransformation(left);
+    // }
 
-    if (right <= 0.5) {
-      right = cubicTransformation(right);
+    // if (right <= 0.5) {
+    //   right = cubicTransformation(right);
+    // }
+
+    if (climbMode) {
+      left *= 0.35;
+      right *= 0.35;
     }
 
     // Multiply the left and right voltage factors to limit it to 70%

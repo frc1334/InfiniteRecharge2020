@@ -25,15 +25,16 @@ public class IntakeSubsystem extends SubsystemBase implements Subsystem {
   // A new TalonSRX Motor Controller object to control the intake 775 motor
   VictorSPX Intake;
   // Double solenoids for the actuation of the intake feed in and out positions
-  DoubleSolenoid IntakeLeft;
-  DoubleSolenoid IntakeRight;
+  DoubleSolenoid IntakeSol;
+
+  // This boolean indicates the toggle state of the Intake
+  boolean toggle = false;
 
   public IntakeSubsystem() {
     // Instantiate new type of TalonSRX for the Intake
     Intake = new VictorSPX(RobotMap.Intake);
-    // Instantiate the 2 new double solenoids for the Intake pistons, one on the left and one on the right
-    IntakeLeft = new DoubleSolenoid(RobotMap.IntakeLeft1, RobotMap.IntakeLeft2);
-    IntakeRight = new DoubleSolenoid(RobotMap.IntakeRight1, RobotMap.IntakeRight2);
+    // Instantiate the new double solenoid for the Intake pistons
+    IntakeSol = new DoubleSolenoid(RobotMap.IntakeSol1, RobotMap.IntakeSol2);
   }
 
   // This is a void method that will allow out Intake motor to spin (based on a percentage based voltage input)
@@ -47,15 +48,21 @@ public class IntakeSubsystem extends SubsystemBase implements Subsystem {
 
     // Check for the deployment states: deploy and retract (true or false on the deploy argument)
     if (deploy) {
-      // Deploy, set both double solenoids to forwards
-      IntakeLeft.set(DoubleSolenoid.Value.kForward);
-      IntakeRight.set(DoubleSolenoid.Value.kForward);
+      // Deploy, set solenoid to forwards
+      IntakeSol.set(DoubleSolenoid.Value.kForward);
     } else if (!deploy) {
-      // Retract, set both double solenoids to reverse
-      IntakeLeft.set(DoubleSolenoid.Value.kReverse);
-      IntakeRight.set(DoubleSolenoid.Value.kReverse);
+      // Retract, set solenoid to reverse
+      IntakeSol.set(DoubleSolenoid.Value.kReverse);
     }
 
+  }
+
+  // This void method toggles the intake deployment
+  public void toggleIntake () {
+    // Deploy the current state of the intake
+    deployIntake(toggle);
+    // Toggle the toggle boolean
+    toggle = !toggle;
   }
 
 }

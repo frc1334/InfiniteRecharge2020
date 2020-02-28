@@ -49,6 +49,10 @@ public class ClimberSubsystem extends SubsystemBase implements Subsystem {
     ClimbDown.configPeakOutputForward(Constants.kClimberDownMaxOutput);
     ClimbDown.configPeakOutputReverse(Constants.kClimberDownMinOutput);
 
+    // Reset the encoder initiation position
+    ClimbUp.setSelectedSensorPosition(0, 0, 0);
+    ClimbDown.setSelectedSensorPosition(0, 0, 0);
+
   }
 
   // This void method sets the percentage output voltage of the ClimbUp Falcon to 100% for a 0.2 second climb
@@ -61,6 +65,16 @@ public class ClimberSubsystem extends SubsystemBase implements Subsystem {
    ClimbDown.set(ControlMode.PercentOutput, 1.0);
   }
 
+  // This void method stops the ClimbUp Falcon
+  public void stopClimbUp () {
+    ClimbUp.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  // This void method stops the ClimbDown Falcon
+  public void stopClimbDown () {
+    ClimbDown.set(ControlMode.PercentOutput, 0.0);
+  }
+  
   // This void method that sets a positional PID setpoint for the ClimbUp Falcon
   public void setClimberUpPosition (double setpoint) {
     ClimbUp.set(ControlMode.Position, setpoint);
@@ -69,6 +83,16 @@ public class ClimberSubsystem extends SubsystemBase implements Subsystem {
   // This void method that sets a positional PID setpoint for the ClimbDown Falcon
   public void setClimberDownPosition (double setpoint) {
     ClimbDown.set(ControlMode.Position, setpoint);
+  }
+
+  // This double retrieves the position of the ClimbUp Falcon Position (Encoder Position)
+  public double getClimbUpPosition () {
+    return ClimbUp.getSelectedSensorPosition(0);
+  }
+
+  // This double retrieves the position of the ClimbDown Falcon Position (Encoder Position)
+  public double getClimbDownPosition () {
+    return ClimbDown.getSelectedSensorPosition(0);
   }
 
   // This boolean method will check to see whether the ClimbUp Falcon ahs reached a setpoint

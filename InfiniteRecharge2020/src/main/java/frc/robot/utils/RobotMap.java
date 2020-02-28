@@ -34,7 +34,7 @@ public class RobotMap {
     // The channel ID for the Feeder motor on the IndexerSubsystem
     public static final int Feeder = 9;
     
-    // The channel ID for the belt motor on the IndexerSubsystem
+    // The channel ID for the belt motor on the VerticalFeederSubsystem
     public static final int Belt = 10;
 
     // The channel ID for the accelerator wheel the AcceleratorWheelSubsystem
@@ -54,16 +54,14 @@ public class RobotMap {
     // Pneumatics 
 
     // The channel ID for the Compressor on the PCM (Pneumatics Control Module)
-    public static final int Compressor = 0;
+    public static final int Compressor = 3;
 
-    // The channel ID for the two double solenoids used for the pistons on the Intake
-    public static final int IntakeLeft1 = 1;
-    public static final int IntakeLeft2 = 2;
-    public static final int IntakeRight1 = 3;
-    public static final int IntakeRight2 = 4;
+    // The channel ID for the double solenoid used for the pistons on the Intake
+    public static final int IntakeSol1 = 0;
+    public static final int IntakeSol2 = 2;
 
     // The channel ID for te gear shifter DoubleSolenoid
-    public static final int GearShiftLow = 0;
-    public static final int GearShiftHigh = 1;
+    public static final int GearShiftLow = 4;
+    public static final int GearShiftHigh = 6;
 
 }
