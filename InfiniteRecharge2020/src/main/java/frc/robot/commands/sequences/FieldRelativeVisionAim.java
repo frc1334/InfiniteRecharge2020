@@ -5,29 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.limelight;
+package frc.robot.commands.sequences;
 
-import java.util.Set;
+import frc.robot.commands.turret.FieldRelativeTurretPosition;
 
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ActivateTurretTracking extends InstantCommand {
-
-  public ActivateTurretTracking() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.LimelightSubsystem);
+public class FieldRelativeVisionAim extends SequentialCommandGroup {
+  /**
+   * Creates a new FieldRelativeVisionAim.
+   */
+  public FieldRelativeVisionAim() {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
+    super(new FieldRelativeTurretPosition(), new TurretAutoAim());
   }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    Robot.LimelightSubsystem.enableTurretTrackCamMode();
-  }
-
 }

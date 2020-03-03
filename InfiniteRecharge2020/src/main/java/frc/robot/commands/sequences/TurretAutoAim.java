@@ -8,6 +8,7 @@
 package frc.robot.commands.sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.limelight.ActivateTurretTracking;
 import frc.robot.commands.limelight.ToggleCameraMode;
 import frc.robot.commands.turret.TurretAutoTracking;
@@ -22,6 +23,7 @@ public class TurretAutoAim extends SequentialCommandGroup {
   public TurretAutoAim() {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new ActivateTurretTracking(), new TurretAutoTracking());
+    super(new ActivateTurretTracking(), new WaitCommand(0.15), new TurretAutoTracking());
   }
+
 }

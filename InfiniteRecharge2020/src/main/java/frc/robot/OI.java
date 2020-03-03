@@ -23,6 +23,7 @@ import frc.robot.commands.drive.GearShift;
 import frc.robot.commands.intake.ToggleIntakeDropdown;
 import frc.robot.commands.limelight.ToggleCameraMode;
 import frc.robot.commands.sequences.ClimbUpSequence;
+import frc.robot.commands.sequences.FieldRelativeVisionAim;
 import frc.robot.commands.sequences.TurretAutoAim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -63,8 +64,9 @@ public class OI {
         OperatorYButton = new JoystickButton(Operator, 4);
 
         //DriverAButton.whenPressed(new GearShift());
-        DriverBButton.whenPressed(new TurretAutoAim());
-        //DriverBButton.whenPressed(new FieldRelativeTurretPosition());
+        //DriverBButton.whenPressed(new TurretAutoAim());
+        DriverBButton.whenPressed(new FieldRelativeVisionAim());
+        //DriverBButton.whenPressed(new TurretAutoAim());
         //DriverXButton.whenPressed(new ClimbUpSequence());
         //DriverYButton.whileHeld(new ClimbPercentDown());
 

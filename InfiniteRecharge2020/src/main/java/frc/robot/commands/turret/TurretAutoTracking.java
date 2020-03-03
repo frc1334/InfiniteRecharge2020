@@ -25,20 +25,22 @@ public class TurretAutoTracking extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("SECOND INIT");
     trackPoint = Robot.TurretSubsystem.getTurretPosition();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-System.out.println("xDisplacement: " + Robot.LimelightSubsystem.getXDisplacement());
+
     // Get the current horizontal displacement
     double xDisplacement = Robot.LimelightSubsystem.getXDisplacement();
+
+    System.out.println("xDisplacement: " + Robot.LimelightSubsystem.getXDisplacement());
 
     // Increment / Decrement the tradk point 64
     //trackPoint += (xDisplacement) * Constants.TurretTicksPerDegree;
     trackPoint += (xDisplacement) * 64;
-
 
     Robot.TurretSubsystem.setTurretPosition(trackPoint);
     

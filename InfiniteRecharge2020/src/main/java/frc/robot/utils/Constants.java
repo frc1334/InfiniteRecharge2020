@@ -71,7 +71,7 @@ public class Constants {
     public static final double kTurretMaxOutput = 0.6;
 
     // Turret tolerance levels
-    public static final double kTurretTolerance = 124;
+    public static final double kTurretTolerance = 32;
 
     // Launcher Subsytem Constants
 

@@ -60,6 +60,13 @@ public class LimelightSubsystem extends SubsystemBase {
     targetArea = ta.getDouble(0.0);
   }
 
+  // This is a void method that automatically updates all the limelight network table values
+  public void updateLimelightValues () {
+    xDisplacement = tx.getDouble(0.0);
+    yDisplacement = ty.getDouble(0.0);
+    targetArea = ta.getDouble(0.0);
+  }
+
   // This is a double getter method for retrieving the horizontal angle displacement
   public double getXDisplacement() {
     xDisplacement = tx.getDouble(0.0);

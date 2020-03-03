@@ -24,6 +24,8 @@ public class FieldRelativeTurretPosition extends CommandBase implements Command 
   // This is the setpoint for the new Turret encoder position
   double setpoint;
 
+  double initAngle = 28.0;
+
   public FieldRelativeTurretPosition() {
     // TurretSubsystem is used for TurretPosition Control; DriveSubsystem is used for field relative Gyro value fetching
     addRequirements(Robot.DriveSubsystem);
@@ -46,7 +48,12 @@ public class FieldRelativeTurretPosition extends CommandBase implements Command 
     */
 
     // Retrieve the current robot/drivetrain angle (i.e., where the robot/drivetrain is facing)
-    double dtAngle = Robot.DriveSubsystem.getGyroAngleHeading() - 45;
+    double dtAngle = Robot.DriveSubsystem.getGyroAngleHeading() - initAngle;
+
+    if (dtAngle >= 180) {
+      dtAngle = dtAngle - 360;
+    }
+
     // Retrieve the current Turret position and calculate the angle from -180 --> +180 from that
     //double turretAngle = (Robot.TurretSubsystem.getTurretPosition()) / (Constants.TurretTicksPerDegree);
     double turretAngle = (Robot.TurretSubsystem.getTurretPosition()) / (64);
@@ -62,7 +69,6 @@ public class FieldRelativeTurretPosition extends CommandBase implements Command 
 
     // Update setpoint (normal to the target)
     setpoint = Robot.TurretSubsystem.getTurretPosition() + (angleDifference * (Constants.TurretTicksPerDegree));
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -80,12 +86,7 @@ public class FieldRelativeTurretPosition extends CommandBase implements Command 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-    if (Robot.TurretSubsystem.inRange(setpoint)) {
-      return true;
-    }
-
-    return false;
-
+    return true;
   }
+
 }
