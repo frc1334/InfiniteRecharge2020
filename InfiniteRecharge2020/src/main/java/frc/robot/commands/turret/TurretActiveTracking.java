@@ -8,18 +8,17 @@
 package frc.robot.commands.turret;
 
 import frc.robot.Robot;
-import frc.robot.utils.Constants;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class TurretAutoTracking extends CommandBase {
+public class TurretActiveTracking extends CommandBase {
 
   double trackPoint = 0.0;
 
-  public TurretAutoTracking() {
+  public TurretActiveTracking() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.TurretSubsystem);
     addRequirements(Robot.LimelightSubsystem);
+    addRequirements(Robot.TurretSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -41,26 +40,21 @@ public class TurretAutoTracking extends CommandBase {
     //trackPoint += (xDisplacement) * Constants.TurretTicksPerDegree;
     trackPoint += (xDisplacement) * 64;
 
-    Robot.TurretSubsystem.setTurretPosition(trackPoint);
-    
+    if (!Robot.TurretSubsystem.inRange(trackPoint)) {
+      Robot.TurretSubsystem.setTurretPosition(trackPoint); 
+    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.TurretSubsystem.turretPercentOutput(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-    if (Robot.TurretSubsystem.inRange(trackPoint)) {
-      return true;
-    }
-
     return false;
-
   }
-
+  
 }
