@@ -29,6 +29,13 @@ public class AcceleratorWheelSubsystem extends SubsystemBase implements Subsyste
   // This method oeprates velocity PID on the accelerator wheel NEO
   public void setAcceleratorWheelVelocity (double setpoint) {
     AcceleratorWheel.setPIDVelocity(setpoint);
+    System.out.println("AW: " + AcceleratorWheel.getVelocity());
+  }
+
+  // This void method manually sets the percent input for the Accelerator Wheel Subsystem
+  public void setAcceleratorWheelPercent (double percent) {
+    AcceleratorWheel.setPercentOutput(percent);
+    System.out.println("AW: " + AcceleratorWheel.getVelocity());
   }
 
 }

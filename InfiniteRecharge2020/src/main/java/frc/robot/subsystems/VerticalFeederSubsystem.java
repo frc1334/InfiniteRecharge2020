@@ -24,6 +24,7 @@ public class VerticalFeederSubsystem extends SubsystemBase implements Subsystem 
   public VerticalFeederSubsystem() {
     // Initialize the 2 motors on the VerticalFeederSubsystem
     Belt = new VictorSPX(RobotMap.Belt);
+    Belt.setInverted(true);
   }
 
   // This void method would set a voltage target for the Belt motor

@@ -20,9 +20,12 @@ import frc.robot.subsystems.VerticalFeederSubsystem;
 import frc.robot.utils.AutoTrajectoryCommandGenerator;
 import frc.robot.commands.drive.DriveCommand;
 
+import java.io.IOException;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -44,9 +47,9 @@ public class Robot extends TimedRobot {
   public static TurretSubsystem TurretSubsystem = new TurretSubsystem();
   public static LimelightSubsystem LimelightSubsystem = new LimelightSubsystem();
   public static LauncherSubsystem LauncherSubsystem = new LauncherSubsystem();
-  //public static PneumaticsSubsytem PneumaticsSubsystem = new PneumaticsSubsytem();
+  // public static PneumaticsSubsytem PneumaticsSubsystem = new PneumaticsSubsytem();
   public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
-  // public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
+  public static IndexerSubsystem IndexerSubsystem = new IndexerSubsystem();
   public static VerticalFeederSubsystem VerticalFeederSubsystem = new VerticalFeederSubsystem();
   public static AcceleratorWheelSubsystem AcceleratorWheelSubsystem = new AcceleratorWheelSubsystem();
   public static ClimberSubsystem ClimberSubsystem = new ClimberSubsystem();
@@ -63,14 +66,19 @@ public class Robot extends TimedRobot {
   CommandScheduler commandScheduler = CommandScheduler.getInstance();
 
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
+
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
+
+    m_chooser.addOption("Drive Auto", "Drive Auto");
+
     SmartDashboard.putData("Auto choices", m_chooser);
+
   }
 
   /**
@@ -113,10 +121,26 @@ public class Robot extends TimedRobot {
         // Put custom auto code here
         break;
       case kDefaultAuto:
+        break;
+      case "Drive Auto":
+
+        // try {
+        //   Command DriveAuto = AutoTrajectoryGenerator.generateCommand("");
+        //   commandScheduler.schedule(DriveAuto);
+        // } catch (IOException e) {
+        //   // TODO Auto-generated catch block
+        //   System.out.println("DRIVE AUTO NOT SELECTED");
+        //   e.printStackTrace();
+        // }
+
+        break;
       default:
         // Put default auto code here
         break;
     }
+
+    //commandScheduler.run();
+
   }
 
   /**

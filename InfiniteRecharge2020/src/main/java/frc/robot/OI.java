@@ -16,14 +16,19 @@ package frc.robot;
 
 import frc.robot.commands.subroutines.IntakeRoutine;
 import frc.robot.commands.turret.FieldRelativeTurretPosition;
+import frc.robot.commands.turret.TurretActiveTracking;
 import frc.robot.commands.turret.TurretPIDPosition;
+import frc.robot.commands.verticalfeeder.VerticalFeed;
+import frc.robot.commands.acceleratorwheel.AcceleratorWheelPIDVelocity;
 import frc.robot.commands.climber.ClimbPercentDown;
 import frc.robot.commands.climber.ClimbUpPosition;
 import frc.robot.commands.drive.GearShift;
 import frc.robot.commands.intake.ToggleIntakeDropdown;
+import frc.robot.commands.launcher.LauncherPIDVelocity;
 import frc.robot.commands.limelight.ToggleCameraMode;
 import frc.robot.commands.sequences.ClimbUpSequence;
 import frc.robot.commands.sequences.FieldRelativeVisionAim;
+import frc.robot.commands.sequences.LaunchSequence;
 import frc.robot.commands.sequences.TurretAutoAim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -63,16 +68,21 @@ public class OI {
         OperatorXButton = new JoystickButton(Operator, 3);
         OperatorYButton = new JoystickButton(Operator, 4);
 
-        //DriverAButton.whenPressed(new GearShift());
-        //DriverBButton.whenPressed(new TurretAutoAim());
-        DriverBButton.whenPressed(new FieldRelativeVisionAim());
-        //DriverBButton.whenPressed(new TurretAutoAim());
+        DriverYButton.whenPressed(new GearShift());
+        //DriverXButton.whileHeld(new LauncherPIDVelocity(20000));
+        //DriverYButton.whileHeld(new AcceleratorWheelPIDVelocity(5700));
+        //DriverBButton.whenPressed(new TurretActiveTracking());
+        //DriverBButton.whenPressed(new FieldRelativeVisionAim());
         //DriverXButton.whenPressed(new ClimbUpSequence());
         //DriverYButton.whileHeld(new ClimbPercentDown());
 
         // DriverAButton.whileHeld(new IntakeRoutine());
         // DriverAButton.whenPressed(new ClimbUpPosition(24000.0));
-        DriverAButton.whenPressed(new ToggleCameraMode());
+
+        OperatorAButton.whileHeld(new VerticalFeed());
+        OperatorBButton.whenPressed(new TurretAutoAim());
+        OperatorXButton.whileHeld(new LaunchSequence());
+        OperatorYButton.whenPressed(new ToggleCameraMode());
     
     }
 

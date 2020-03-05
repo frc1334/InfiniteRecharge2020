@@ -18,7 +18,7 @@ public class AcceleratorWheelPIDVelocity extends CommandBase implements Command 
 
   public AcceleratorWheelPIDVelocity (double velocity) {
     this.velocity = velocity;
-    addRequirements(Robot.VerticalFeederSubsystem);
+    addRequirements(Robot.AcceleratorWheelSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -30,11 +30,13 @@ public class AcceleratorWheelPIDVelocity extends CommandBase implements Command 
   @Override
   public void execute() {
     Robot.AcceleratorWheelSubsystem.setAcceleratorWheelVelocity(velocity);
+    //Robot.AcceleratorWheelSubsystem.setAcceleratorWheelPercent(1.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.AcceleratorWheelSubsystem.setAcceleratorWheelPercent(0.0);
   }
 
   // Returns true when the command should end.

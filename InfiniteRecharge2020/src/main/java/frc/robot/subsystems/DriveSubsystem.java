@@ -110,7 +110,14 @@ public class DriveSubsystem extends SubsystemBase implements Subsystem {
 
   // This double method returns the heading angle of the Gyroscope (the direction/angle the bot is facing in respect to the field)
   public double getGyroAngleHeading () {
-    return Gyro.getAngle();
+
+    double heading = Gyro.getAngle();
+
+    if (heading >= 180) {
+      heading -= 360;
+    }
+
+    return heading;
   }
 
   // This Pose2D method returns the current calculated position of the robot (2D position from Bird's eye view)

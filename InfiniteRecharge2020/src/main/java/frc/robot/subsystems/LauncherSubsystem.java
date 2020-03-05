@@ -47,9 +47,17 @@ public class LauncherSubsystem extends SubsystemBase {
     Launcher1.config_kD(0, Constants.kLauncherD);
     Launcher1.config_kF(0, Constants.kLauncherFF);
 
+    Launcher2.config_kP(0, Constants.kLauncherP);
+    Launcher2.config_kI(0, Constants.kLauncherI);
+    Launcher2.config_kD(0, Constants.kLauncherD);
+    Launcher2.config_kF(0, Constants.kLauncherFF);
+
     // Configure the peak output (max in magnitude both forwards and reverse) for the first Talon
     Launcher1.configPeakOutputForward(Constants.kLauncherMaxOutput);
     Launcher1.configPeakOutputReverse(Constants.kLauncherMinOutput);
+
+    Launcher2.configPeakOutputForward(Constants.kLauncherMaxOutput);
+    Launcher2.configPeakOutputReverse(Constants.kLauncherMinOutput);
 
   }
 
@@ -57,6 +65,15 @@ public class LauncherSubsystem extends SubsystemBase {
   public void setLauncherVelocity (double setpoint) {
     // Set the first Talon's PID target to the setpoing (second Talon will follow)
     Launcher1.set(ControlMode.Velocity, setpoint);
+    Launcher2.set(ControlMode.Velocity, setpoint);
+    System.out.println("LAUNCHER: " + Launcher1.getSelectedSensorVelocity());
+  }
+
+  // This void method manually sets the percent power input to the Launcher Falcons
+  public void setLauncherPercent (double percent) {
+    Launcher1.set(ControlMode.PercentOutput, percent);
+    Launcher2.set(ControlMode.PercentOutput, percent);
+    System.out.println("LAUNCHER: " + Launcher1.getSelectedSensorVelocity());
   }
 
 }

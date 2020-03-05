@@ -35,8 +35,8 @@ public class AutoTrajectoryCommandGenerator {
     public Command generateCommand (String AutoPathWeaverJSON) throws IOException {
 
         // Read the current trajectory json path from the Roborio file system and generate the trajectory from that
-        Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(AutoPathWeaverJSON);
-        Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+        // Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(AutoPathWeaverJSON);
+        // Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
 
         // Create a voltage constraint to ensure we don't accelerate too fast. 10 refers to the 10V max limit
         var autoVoltageConstraint =
@@ -56,7 +56,7 @@ public class AutoTrajectoryCommandGenerator {
                 // Apply the voltage constraint
                 .addConstraint(autoVoltageConstraint);
 
-        // An example trajectory to follow.  All units in meters.
+        // An example trajectory to follow. All units in meters.
         Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
             // Start at the origin facing the +X direction
             new Pose2d(0, 0, new Rotation2d(0)),
@@ -90,6 +90,8 @@ public class AutoTrajectoryCommandGenerator {
             Robot.DriveSubsystem::TankDriveVoltage,
             Robot.DriveSubsystem
         );
+
+        System.out.println("Drive Auto Selected");
 
         // Run path following command, then stop at the end.
         return ramseteCommand.andThen(() -> Robot.DriveSubsystem.TankDriveVoltage(0, 0));

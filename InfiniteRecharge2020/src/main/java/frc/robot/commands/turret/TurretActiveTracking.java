@@ -42,6 +42,8 @@ public class TurretActiveTracking extends CommandBase {
 
     if (!Robot.TurretSubsystem.inRange(trackPoint)) {
       Robot.TurretSubsystem.setTurretPosition(trackPoint); 
+    } else {
+      Robot.TurretSubsystem.turretPercentOutput(0.0);
     }
 
   }
@@ -56,5 +58,5 @@ public class TurretActiveTracking extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-  
+
 }
