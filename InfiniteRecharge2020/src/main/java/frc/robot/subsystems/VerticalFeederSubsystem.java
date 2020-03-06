@@ -18,18 +18,21 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class VerticalFeederSubsystem extends SubsystemBase implements Subsystem {
 
-  // The motor driving the belt upwards
+  // The motors driving the belt upwards
   VictorSPX Belt;
+  VictorSPX Wheel;
 
   public VerticalFeederSubsystem() {
     // Initialize the 2 motors on the VerticalFeederSubsystem
-    Belt = new VictorSPX(RobotMap.Belt);
+    Belt = new VictorSPX(RobotMap.VFBelt);
+    Wheel = new VictorSPX(RobotMap.VFWheel);
     Belt.setInverted(true);
   }
 
   // This void method would set a voltage target for the Belt motor
   public void setVerticalFeederVoltage (double voltage) {
     Belt.set(ControlMode.PercentOutput, voltage);
+    Wheel.set(ControlMode.PercentOutput, voltage);
   }
 
 }

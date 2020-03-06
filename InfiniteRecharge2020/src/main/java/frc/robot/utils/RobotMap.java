@@ -35,7 +35,8 @@ public class RobotMap {
     public static final int Feeder = 9;
     
     // The channel ID for the belt motor on the VerticalFeederSubsystem
-    public static final int Belt = 10;
+    public static final int VFBelt = 10;
+    public static final int VFWheel = 14;
 
     // The channel ID for the accelerator wheel the AcceleratorWheelSubsystem
     public static final int AcceleratorWheel = 11;
