@@ -21,6 +21,7 @@ import frc.robot.commands.turret.TurretPIDPosition;
 import frc.robot.commands.verticalfeeder.VerticalEject;
 import frc.robot.commands.verticalfeeder.VerticalFeed;
 import frc.robot.commands.acceleratorwheel.AcceleratorWheelPIDVelocity;
+import frc.robot.commands.auto.InitiationLaunchSequence;
 import frc.robot.commands.climber.ClimbPercentDown;
 import frc.robot.commands.climber.ClimbUpPosition;
 import frc.robot.commands.drive.GearShift;
@@ -72,6 +73,7 @@ public class OI {
         OperatorYButton = new JoystickButton(Operator, 4);
 
         DriverYButton.whenPressed(new GearShift());
+        DriverXButton.whenPressed(new InitiationLaunchSequence());
         //DriverXButton.whileHeld(new LauncherPIDVelocity(20000));
         //DriverYButton.whileHeld(new AcceleratorWheelPIDVelocity(5700));
         //DriverBButton.whenPressed(new TurretActiveTracking());

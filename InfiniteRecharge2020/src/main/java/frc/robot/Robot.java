@@ -18,6 +18,7 @@ import frc.robot.subsystems.PneumaticsSubsytem;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.subsystems.VerticalFeederSubsystem;
 import frc.robot.utils.AutoTrajectoryCommandGenerator;
+import frc.robot.commands.auto.InitiationShot;
 import frc.robot.commands.drive.DriveCommand;
 
 import java.io.IOException;
@@ -37,8 +38,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
 
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -72,10 +71,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-
     m_chooser.addOption("Drive Auto", "Drive Auto");
+    m_chooser.addOption("3 Ball Auto", "3 Ball Auto");
 
     SmartDashboard.putData("Auto choices", m_chooser);
 
@@ -117,11 +114,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-        break;
+      
       case "Drive Auto":
 
         // try {
@@ -134,6 +127,13 @@ public class Robot extends TimedRobot {
         // }
 
         break;
+
+      case "3 Ball Auto":
+
+          commandScheduler.schedule(new InitiationShot());
+
+          break;
+      
       default:
         // Put default auto code here
         break;
