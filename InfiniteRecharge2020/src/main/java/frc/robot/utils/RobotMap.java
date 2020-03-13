@@ -59,10 +59,10 @@ public class RobotMap {
 
     // The channel ID for the double solenoid used for the pistons on the Intake
     public static final int IntakeSol1 = 0;
-    public static final int IntakeSol2 = 2;
+    public static final int IntakeSol2 = 6;
 
     // The channel ID for te gear shifter DoubleSolenoid
-    public static final int GearShiftLow = 4;
-    public static final int GearShiftHigh = 6;
+    public static final int GearShiftLow = 2;
+    public static final int GearShiftHigh = 4;
 
 }

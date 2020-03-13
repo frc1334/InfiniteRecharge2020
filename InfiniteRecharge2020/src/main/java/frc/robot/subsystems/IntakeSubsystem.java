@@ -33,6 +33,7 @@ public class IntakeSubsystem extends SubsystemBase implements Subsystem {
   public IntakeSubsystem() {
     // Instantiate new type of TalonSRX for the Intake
     Intake = new VictorSPX(RobotMap.Intake);
+    Intake.setInverted(true);
     // Instantiate the new double solenoid for the Intake pistons
     IntakeSol = new DoubleSolenoid(RobotMap.IntakeSol1, RobotMap.IntakeSol2);
   }

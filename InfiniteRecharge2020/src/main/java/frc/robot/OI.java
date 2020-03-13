@@ -22,6 +22,7 @@ import frc.robot.commands.verticalfeeder.VerticalEject;
 import frc.robot.commands.verticalfeeder.VerticalFeed;
 import frc.robot.commands.acceleratorwheel.AcceleratorWheelPIDVelocity;
 import frc.robot.commands.auto.InitiationLaunchSequence;
+import frc.robot.commands.auto.InitiationShot;
 import frc.robot.commands.climber.ClimbPercentDown;
 import frc.robot.commands.climber.ClimbUpPosition;
 import frc.robot.commands.drive.GearShift;
@@ -30,10 +31,12 @@ import frc.robot.commands.indexer.FeedIndexer;
 import frc.robot.commands.intake.ToggleIntakeDropdown;
 import frc.robot.commands.launcher.LauncherPIDVelocity;
 import frc.robot.commands.limelight.ToggleCameraMode;
+import frc.robot.commands.sequences.AutoAimRoutine;
 import frc.robot.commands.sequences.ClimbUpSequence;
 import frc.robot.commands.sequences.FieldRelativeVisionAim;
 import frc.robot.commands.sequences.LaunchSequence;
 import frc.robot.commands.sequences.TurretAutoAim;
+import frc.robot.commands.sequences.TurretFixedAim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -57,6 +60,11 @@ public class OI {
     public JoystickButton OperatorXButton;
     public JoystickButton OperatorYButton;
 
+    public JoystickButton DriverLeftTrigger;
+
+    public JoystickButton OperatorLeftTrigger;
+    public JoystickButton OperatorRightTrigger;
+
     // Default constructor which initializes and maps the controls (initialized above, e.g., OperatorAButton) to the correct ports on the XBox controller and the right command
     public OI () {
 
@@ -72,8 +80,20 @@ public class OI {
         OperatorXButton = new JoystickButton(Operator, 3);
         OperatorYButton = new JoystickButton(Operator, 4);
 
-        DriverYButton.whenPressed(new GearShift());
-        DriverXButton.whenPressed(new InitiationLaunchSequence());
+        DriverLeftTrigger = new JoystickButton(Driver, 5);
+
+        OperatorLeftTrigger = new JoystickButton(Operator, 5);
+        OperatorRightTrigger = new JoystickButton(Operator, 6);
+
+        DriverAButton.whileHeld(new IntakeRoutine());
+        DriverBButton.whenPressed(new ToggleCameraMode());
+
+        //DriverLeftTrigger.whileHeld(new IntakeRoutine());
+
+        //DriverXButton.whenPressed(new InitiationLaunchSequence());
+        //DriverBButton.whenPressed(new ToggleCameraMode());
+        //DriverAButton.whenPressed(new InitiationShot());
+        //DriverBButton.whenPressed(new TurretPIDPosition(36000));
         //DriverXButton.whileHeld(new LauncherPIDVelocity(20000));
         //DriverYButton.whileHeld(new AcceleratorWheelPIDVelocity(5700));
         //DriverBButton.whenPressed(new TurretActiveTracking());
@@ -89,8 +109,11 @@ public class OI {
         OperatorXButton.whileHeld(new FeedIndexer());
         //OperatorXButton.whileHeld(new LaunchSequence());
         //OperatorYButton.whenPressed(new ToggleCameraMode());
-        OperatorBButton.whileHeld(new EjectIndexer());
+        OperatorBButton.whenPressed(new TurretAutoAim());
         OperatorYButton.whileHeld(new VerticalEject());
+
+        OperatorLeftTrigger.whenPressed(new TurretFixedAim(36000));
+        OperatorRightTrigger.whileHeld(new LaunchSequence());
     
     }
 

@@ -5,22 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.auto;
+package frc.robot.commands.subroutines;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.limelight.ActivateTurretTracking;
-import frc.robot.commands.sequences.TurretFixedAim;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.acceleratorwheel.AcceleratorWheelPIDVelocity;
+import frc.robot.commands.indexer.FeedIndexer;
+import frc.robot.commands.verticalfeeder.VerticalFeed;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class InitiationShot extends SequentialCommandGroup {
+public class FeedBall extends ParallelCommandGroup {
   /**
-   * Creates a new InitiationShot.
+   * Creates a new FeedBall.
    */
-  public InitiationShot() {
+  public FeedBall() {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
-    super(new ActivateTurretTracking(), new TurretFixedAim(36000), new InitiationLaunchSequence());
+    // super(new FooCommand(), new BarCommand());super();
+    super(new FeedIndexer(), new VerticalFeed(), new AcceleratorWheelPIDVelocity(-600));
   }
 }
