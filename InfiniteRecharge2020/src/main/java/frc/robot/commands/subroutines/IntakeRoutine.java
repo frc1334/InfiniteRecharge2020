@@ -29,7 +29,7 @@ public class IntakeRoutine extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //Robot.IndexerSubsystem.setIndexerVoltage(0.6);
+    Robot.IndexerSubsystem.setIndexerVoltage(0.5);
     Robot.IntakeSubsystem.setPercentOutputIntake(0.5);
   }
 
